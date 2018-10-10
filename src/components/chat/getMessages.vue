@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>All those moments will be lost in time, like tears in rain.</p>
         <table>
             <tr v-for="(value, key) in chatLog.chatlog" :key=key>
                 <td>{{chatLog.chatlog[key].username}}</td>

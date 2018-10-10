@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <textarea v-model="msg"></textarea>
-        <button @click="sendMsg">Send</button>
-    </div>
+    <form onsubmit="return false;">
+        <input v-model="msg"/>
+        <button @click="sendMsg" :disabled="msg.length<1">Send</button>
+    </form>
 </template>
 
 <script>
@@ -33,6 +33,7 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+            this.msg = "";
         }
     }
 }

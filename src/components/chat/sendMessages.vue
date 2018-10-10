@@ -1,6 +1,7 @@
 <template>
     <div>
-        <button @click="sendMsg">Ok</button>
+        <textarea v-model="msg"></textarea>
+        <button @click="sendMsg">Send</button>
     </div>
 </template>
 
@@ -13,7 +14,8 @@ export default {
         return{
             testNum: 5,
             tempUsername: "pauly",
-            tempRoom: 1
+            tempRoom: 1,
+            msg: ""
         }
     },
     methods: {
@@ -21,7 +23,7 @@ export default {
             const params = new URLSearchParams();
             params.append('username', this.tempUsername);
             params.append('room', this.tempRoom);
-            params.append('msg', "idk");
+            params.append('msg', this.msg);
             var headers = {
                 "Access-Control-Allow-Origin" : "*",
                 "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",

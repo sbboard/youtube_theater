@@ -6,7 +6,7 @@ require_once('includes/commonvars.php');
 
 $user=$_POST['username'];
 $room=$_POST['room'];
-$msg=$_POST['msg'];
+$msg=clean($_POST['msg']);
 $time = date("y/m/d");
 
 $getLast = mysqli_query($con,"SELECT * from $chatTable ORDER BY id DESC LIMIT 1");

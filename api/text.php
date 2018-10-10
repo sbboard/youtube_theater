@@ -2,15 +2,20 @@
 header('Access-Control-Allow-Origin: *');
 require_once('includes/commonvars.php'); 
 
+$roomNo=$_GET['room'];
+
+$json="";
+$json.="{";
+$json.="\"chatlog\":[";
 //select entire table
-$result = mysqli_query($con,"SELECT * FROM ".$tablename);
 
+$result = mysqli_query($con,"SELECT * FROM $chatTable WHERE room = '$roomNo'");
 while($row = mysqli_fetch_array($result)){
-        $test = $row['user'];
+        $json.="{\"username\":\"".$row['user']."\", \"message\":\"".$row['msg']."\", \"time\":\"".$row['time']."\", \"id\":\"".$row['id']."\"},";
 }
-
 mysqli_close($con);
+$json=rtrim($json,',');
+$json.="]}";
 
-//return $test;
-echo "$test";
+echo $json;
 ?>

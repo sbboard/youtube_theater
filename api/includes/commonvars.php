@@ -3,8 +3,9 @@
 require_once('includes/secretvars.php'); 
 $mysqlserver="localhost";
 $dbname = 'youtube';
+$memberTable = 'members';
+$chatTable = 'chatlog';
 $con=mysqli_connect($mysqlserver,$mysqlusername, $mysqlpassword,$dbname);
-$tablename = 'members';
 
 function clean($string) {
     $string = trim($string," ");

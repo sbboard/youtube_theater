@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Chat from './components/Chat'
+import Chat from './components/chat/Chat'
 
 export default {
   name: 'app',

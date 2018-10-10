@@ -1,6 +1,12 @@
 <template>
     <div>
-        {{chatLog}}
+        <table>
+            <tr v-for="(value, key) in chatLog.chatlog" :key=key>
+                <td>{{chatLog.chatlog[key].username}}</td>
+                <td>{{chatLog.chatlog[key].message}}</td>
+                <td>{{chatLog.chatlog[key].time}}</td>
+            </tr>
+        </table>
     </div>
 </template>
 
@@ -8,7 +14,7 @@
 import axios from 'axios'
 
 export default {
-    name: "chat",
+    name: "getMessages",
     data(){
         return{
             testNum: 5,
@@ -17,12 +23,17 @@ export default {
         }
     },
     created(){
-        this.getChat()     
+        this.getChat() 
     },
     methods: {
         getChat: function(){           
             setInterval(function(){
-            axios.get('http://localhost/youtube_theater/api/text.php')
+            axios.get('http://localhost/youtube_theater/api/text.php',
+            {
+                params:{
+                    room: 1
+                }
+            })
             .then(response => {
                 this.chatLog = response.data
             })

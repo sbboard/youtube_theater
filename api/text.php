@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 require_once('includes/commonvars.php'); 
 
 //select entire table
@@ -10,6 +11,6 @@ while($row = mysqli_fetch_array($result)){
 
 mysqli_close($con);
 
-return $test;
-
+//return $test;
+return "ok";
 ?>

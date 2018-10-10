@@ -7,11 +7,27 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  data() {
+    return{
+      todos: []
+    }
+  },
+  created() {
+  axios.get('http://jsonplaceholder.typicode.com/todos')
+    .then(response => {
+         this.todos = response.data
+         console.log(this.todos)
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 }
 </script>

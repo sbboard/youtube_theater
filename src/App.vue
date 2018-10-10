@@ -16,11 +16,11 @@ export default {
   },
   data() {
     return{
-      todos: []
+      todos: ""
     }
   },
   created() {
-  axios.get('http://jsonplaceholder.typicode.com/todos')
+  axios.get('http://localhost/youtube_theater/api/text.php')
     .then(response => {
          this.todos = response.data
          console.log(this.todos)

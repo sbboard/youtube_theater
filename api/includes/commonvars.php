@@ -1,14 +1,10 @@
 <?php
 //SQL Details
-require_once('/api/includes/secretvars.php'); 
+require_once('includes/secretvars.php'); 
 $mysqlserver="localhost";
+$dbname = 'youtube';
 $con=mysqli_connect($mysqlserver,$mysqlusername, $mysqlpassword,$dbname);
 $tablename = 'members';
-$dbname = 'youtube';
-
-//1 is red
-//2 is blue
-//3 is both
 
 function clean($string) {
     $string = trim($string," ");

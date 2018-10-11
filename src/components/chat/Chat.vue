@@ -1,7 +1,10 @@
 <template>
   <div id="chatbox">
     <getMessages/>
-    <sendMessages/>
+    <sendMessages v-if="this.$store.state.username!=''"/>
+    <div v-else>
+      Login to Participate in Chat
+    </div>
   </div>
 </template>
 

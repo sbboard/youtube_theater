@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 require_once('includes/commonvars.php'); 
-$chatLengthLimit = 100;
+$chatLengthLimit = 50;
 
 
 $user=$_POST['username'];

@@ -13,7 +13,6 @@ export default {
     data(){
         return{
             testNum: 5,
-            tempUsername: "pauly",
             tempRoom: 1,
             msg: ""
         }
@@ -21,7 +20,7 @@ export default {
     methods: {
         sendMsg: function(){
             const params = new URLSearchParams();
-            params.append('username', this.tempUsername);
+            params.append('username', this.$store.state.username);
             params.append('room', this.tempRoom);
             params.append('msg', this.msg);
             var headers = {

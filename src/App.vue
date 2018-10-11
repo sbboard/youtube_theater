@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Chat/>
     <ProjFooter/>
   </div>
 </template>

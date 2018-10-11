@@ -1,10 +1,15 @@
 <template>
-    <div>Hello</div>
+    <login/>
 </template>
 
 <script>
+import login from './Login'
+
 export default {
-    
+    name:"footer",
+    components: {
+        login
+    }
 }
 </script>
 

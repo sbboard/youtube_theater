@@ -57,6 +57,7 @@ export default {
                     console.log(response.data);
                     if(response.data=="success"){
                         this.success=true;
+                        document.cookie = "username="+this.username;
                     }
                     else{
                         this.errorCheck=response.data

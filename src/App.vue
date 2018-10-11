@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Register/>
+    <ProjFooter/>
   </div>
 </template>
 

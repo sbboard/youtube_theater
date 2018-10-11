@@ -6,7 +6,7 @@
 import login from './Login'
 
 export default {
-    name:"footer",
+    name:"ProjFooter",
     components: {
         login
     }

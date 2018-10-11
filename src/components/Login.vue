@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div v-if="document.cookie==null">
+        <div v-if="this.$store.state.username==''">
             <form onsubmit="return false;">
             Login:
             <input type='text' required v-model='loginName'/>
-            Password:
+            Password:{{this.$store.state.username}}
             <input type='password' v-model='loginPass' required/>
             <button @click="submitRegister()">Send</button>
             </form>
         </div>
         <div v-else>
-            Hello
+            Hello {{this.$store.state.username}}!
         </div>
     </div>
 </template>

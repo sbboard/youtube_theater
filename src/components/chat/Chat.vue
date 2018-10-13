@@ -1,9 +1,11 @@
 <template>
   <div id="chatbox">
     <getMessages/>
+    <div id="loginMsg">
     <sendMessages v-if="this.$store.state.username!=''"/>
     <div v-else>
       Login to Participate in Chat
+    </div>
     </div>
   </div>
 </template>
@@ -21,8 +23,13 @@ export default {
 }
 </script>
 
-<style scoped>
-div{
-  background-color: red;
-}
+<style lang="sass" scoped>
+#chatbox
+  background-color: red
+  #loginMsg
+    display: block
+    padding-top: 1em
+    padding-bottom: 1em
+    text-align: center
+    background-color: green
 </style>

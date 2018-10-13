@@ -1,11 +1,11 @@
 <template>
     <div>
-        <p>All those moments will be lost in time, like tears in rain.</p>
+        <p class="bladerunner">All those moments will be lost in time, like tears in rain.</p>
         <table>
             <tr v-for="(value, key) in chatLog.chatlog" :key=key>
-                <td>{{chatLog.chatlog[key].username}}</td>
-                <td>{{chatLog.chatlog[key].message}}</td>
-                <td>{{chatLog.chatlog[key].time}}</td>
+                <td class="nameField">{{chatLog.chatlog[key].username}}</td>
+                <td class="msgField">{{chatLog.chatlog[key].message}}</td>
+                <td class="datefield">{{chatLog.chatlog[key].time}}</td>
             </tr>
         </table>
     </div>
@@ -48,5 +48,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+div
+    .bladerunner
+        text-align: center
+        color: white
+    table
+        width: 100%
+        .nameField
+            font-weight: 800
+        .msgField
+        .datefield
+            text-align: right
 </style>

@@ -1,5 +1,4 @@
 <template>
-    <div>Bop</div>
 </template>
 
 <script>

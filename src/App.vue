@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <Chat/>
+    <Room/>
     <ProjFooter/>
   </div>
 </template>
 
 <script>
-import Chat from './components/chat/Chat'
+import Room from './components/Rooms'
 import ProjFooter from './components/Footer'
 import Register from './components/Register'
 
 export default {
   name: 'app',
   components: {
-    Chat,
+    Room,
     ProjFooter,
     Register
   }

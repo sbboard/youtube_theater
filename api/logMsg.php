@@ -2,9 +2,12 @@
 header('Access-Control-Allow-Origin: *');
 require_once('includes/commonvars.php'); 
 
-$oldVal=$_GET['oldvalue'];
-$newVal=$_GET['newvalue'];
+if(isset($_GET['oldvalue'])){
+    $oldVal=$_GET['oldvalue'];
+    $newVal=$_GET['newvalue'];
+}
 $room=$_GET['room'];
+
 $time = date("y/m/d");
 $msg = "";
 
@@ -16,6 +19,7 @@ if(strlen($newVal) > 0){
     $msg=$newVal." has entered the room";
 }
 else{
+    mysqli_query($con,"UPDATE $memberTable SET online = 0 WHERE user = '$oldVal'");
     $msg=$oldVal." has left the room";
 }
 

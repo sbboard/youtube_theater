@@ -1,6 +1,6 @@
 <?php
 require_once('commonvars.php'); 
-$d2 = date("Y-m-d H:i:s", time() - 10);
+$d2 = date("Y-m-d H:i:s", time() - 2);
 
 $statCheck = mysqli_query($con,"SELECT * FROM $memberTable WHERE online=1");
 while($row = mysqli_fetch_array($statCheck)){

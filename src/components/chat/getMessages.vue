@@ -32,7 +32,7 @@ export default {
             axios.get('http://localhost/youtube_theater/api/text.php',
             {
                 params:{
-                    room: 1
+                    room: this.$store.state.room
                 }
             })
             .then(response => {

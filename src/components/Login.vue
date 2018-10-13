@@ -56,8 +56,8 @@ export default {
         },
         submitLogout(){
             this.$store.state.username=""
-            this.passwordCheck=""
-            this.password=""
+            this.loginPass=""
+            this.loginName=""
         }
     }
 }

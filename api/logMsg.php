@@ -1,11 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: *');
 require_once('includes/commonvars.php'); 
 
-$user=$_POST['username'];
-$room=$_POST['room'];
-$msg=clean($_POST['msg']);
+
+$user=$_GET['username'];
+$room=$_GET['status'];
 $time = date("y/m/d");
 
 $getLast = mysqli_query($con,"SELECT * from $chatTable ORDER BY id DESC LIMIT 1");

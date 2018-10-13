@@ -12,6 +12,7 @@
         </div>
         <div v-else>
             Hello {{this.$store.state.username}}!
+            <button @click="submitLogout()">Logout</button>
         </div>
     </div>
 </template>
@@ -52,6 +53,11 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+        },
+        submitLogout(){
+            this.$store.state.username=""
+            this.passwordCheck=""
+            this.password=""
         }
     }
 }

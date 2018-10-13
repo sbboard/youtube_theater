@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-        username: ""
+        username: "",
+        room: "1"
     }
 });

@@ -1,18 +1,24 @@
 <template>
-<div>
-    Old:{{oldName}} New:{{newName}}
+<v-layout row>
+    <v-flex xs8>
+    <Theater/>
+    </v-flex>
+    <v-flex xs4>
     <Chat/>
-    </div>
+    </v-flex>
+</v-layout>
 </template>
 
 <script>
 import Chat from './chat/Chat'
+import Theater from './Theater'
 import axios from 'axios'
 
 export default {
     name: "room",
     components: {
-        Chat
+        Chat,
+        Theater
     },
     data(){
         return{

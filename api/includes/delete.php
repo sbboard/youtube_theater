@@ -1,6 +1,6 @@
 <?php
 require_once('includes/commonvars.php'); 
-$chatLengthLimit = 50;
+$chatLengthLimit = 100;
 
 $result = mysqli_query($con,"SELECT COUNT(*) from $chatTable");
 $row = mysqli_fetch_assoc($result);

@@ -79,6 +79,7 @@ export default {
     bottom: 0
 #theater
     background-color: black
+    height: calc(100% - 3.5em)
 .largeFlex
     position: relative
 #loginMsg

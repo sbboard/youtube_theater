@@ -1,6 +1,6 @@
 <template>
     <div>
-        <youtube :video-id="videoId" player-width="100%" :player-height="desiredHeight"></youtube>
+        <youtube :video-id="videoId" player-width="100%" player-height="100%" id="youtTubeVid"></youtube>
     </div>
 </template>
 
@@ -9,16 +9,16 @@ export default {
     name: "theater",
     data(){
         return{
-            videoId: "02gys42cYmk",
-            desiredHeight: 0
+            videoId: "02gys42cYmk"
         }
     },
     created(){
             this.videoId= "02gys42cYmk"
-            this.desiredHeight= document.getElementById('chatRoom').clientHeight
     }
 }
 </script>
 
 <style lang="sass" scoped>
+#youtTubeVid
+    height: 100%
 </style>

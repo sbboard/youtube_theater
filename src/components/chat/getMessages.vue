@@ -43,7 +43,7 @@ export default {
                 console.log(error);
             })
             if(this.firstTime < 2){
-                document.getElementById("chatRoom").scrollTop = document.getElementById("chatRoom").scrollHeight;
+                document.getElementById("chatRoom").scrollTop = document.getElementById("chatRoom").scrollHeight
                 this.firstTime++;
             }
             }.bind(this), 500);

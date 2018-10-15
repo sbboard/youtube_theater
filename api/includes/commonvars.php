@@ -5,6 +5,7 @@ $mysqlserver="localhost";
 $dbname = 'youtube';
 $memberTable = 'members';
 $chatTable = 'chatlog';
+$vidTable = 'video';
 $con=mysqli_connect($mysqlserver,$mysqlusername, $mysqlpassword,$dbname);
 
 function clean($string) {

@@ -18,7 +18,7 @@
 
 <script>
 import Chat from './chat/Chat'
-import Theater from './Theater'
+import Theater from './theater/Theater'
 import ProjFooter from './Footer'
 import sendMessages from './chat/sendMessages'
 import axios from 'axios'

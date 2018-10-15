@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import login from './Login'
-import checkin from './checkIn'
+import login from './membership/Login'
+import checkin from './membership/checkIn'
 
 export default {
     name:"ProjFooter",

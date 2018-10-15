@@ -5,6 +5,7 @@
         <ProjFooter id="footer"/>
     </v-flex>
     <v-flex xs4 class="largeFlex">
+        <rightMenu id="rightMenu"/>
         <Chat id="chatRoom"/>
         <div id="loginMsg">
         <sendMessages v-if="this.$store.state.username!=''"/>
@@ -21,6 +22,7 @@ import Chat from './chat/Chat'
 import Theater from './theater/Theater'
 import ProjFooter from './Footer'
 import sendMessages from './chat/sendMessages'
+import rightMenu from './chat/rightMenu'
 import axios from 'axios'
 
 export default {
@@ -29,7 +31,8 @@ export default {
         Chat,
         ProjFooter,
         Theater,
-        sendMessages
+        sendMessages,
+        rightMenu
     },
     data(){
         return{
@@ -67,9 +70,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+#rightMenu
+    padding: 1em 0
 #chatRoom
   background-color: red
-  height: calc(100% - 3.5em)
+  height: calc(100% - 7em)
   overflow-y: scroll
 #footer
     background-color: blue

@@ -18,23 +18,28 @@ export default {
         return{
             vidEntered: "",
             vidId: "",
-            vidLength: ""
+            vidLength: "",
+            vidDetails: "",
+            vidName: "",
+            vidCreator: ""
         }
     },
     methods:{
         submitVid(){
             this.vidId = getIdFromURL(this.vidEntered)
             this.vidLength = getTimeFromURL(this.vidLength)
-            console.log(this.$store.state.youtube)
             axios.get(this.$store.state.youtube,
             {
                 params:{
                     id: this.vidId,
-                    part: 'snippet,contentDetails,statistics'
+                    part: 'snippet,contentDetails'
                 }
             })
             .then(response => {
-                console.log(response.data)
+                this.vidDetails = response.data
+                this.vidLength = this.vidDetails.items[0].contentDetails.duration
+                this.vidName = this.vidDetails.items[0].snippet.title
+                this.vidCreator = this.vidDetails.items[0].snippet.channelTitle
             })
             .catch(error => {
                 console.log(error);

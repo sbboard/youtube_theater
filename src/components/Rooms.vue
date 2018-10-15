@@ -1,10 +1,17 @@
 <template>
 <v-layout row>
-    <v-flex xs8>
-    <Theater/>
+    <v-flex xs8 class="largeFlex">
+        <Theater id="theater"/>
+        <ProjFooter id="footer"/>
     </v-flex>
-    <v-flex xs4>
-    <Chat id="chatRoom"/>
+    <v-flex xs4 class="largeFlex">
+        <Chat id="chatRoom"/>
+        <div id="loginMsg">
+        <sendMessages v-if="this.$store.state.username!=''"/>
+        <div v-else>
+        Login to Participate in Chat
+        </div>
+        </div>
     </v-flex>
 </v-layout>
 </template>
@@ -12,13 +19,17 @@
 <script>
 import Chat from './chat/Chat'
 import Theater from './Theater'
+import ProjFooter from './Footer'
+import sendMessages from './chat/sendMessages'
 import axios from 'axios'
 
 export default {
     name: "room",
     components: {
         Chat,
-        Theater
+        ProjFooter,
+        Theater,
+        sendMessages
     },
     data(){
         return{
@@ -58,6 +69,25 @@ export default {
 <style lang="sass" scoped>
 #chatRoom
   background-color: red
-  height: 100%
+  height: calc(100% - 3.5em)
   overflow-y: scroll
+#footer
+    background-color: blue
+    width: 100%
+    padding: 1em 0
+    position: absolute
+    bottom: 0
+#theater
+    background-color: black
+.largeFlex
+    position: relative
+#loginMsg
+  display: block
+  padding-top: 1em
+  padding-bottom: 1em
+  text-align: center
+  background-color: green
+  position: absolute
+  bottom: 0
+  width: 100%
 </style>

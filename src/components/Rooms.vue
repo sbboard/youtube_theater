@@ -4,7 +4,7 @@
     <Theater/>
     </v-flex>
     <v-flex xs4>
-    <Chat/>
+    <Chat id="chatRoom"/>
     </v-flex>
 </v-layout>
 </template>
@@ -55,6 +55,9 @@ export default {
 }
 </script>
 
-<style lang="sass">
-
+<style lang="sass" scoped>
+#chatRoom
+  background-color: red
+  height: 100%
+  overflow-y: scroll
 </style>

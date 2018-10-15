@@ -24,12 +24,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-#chatbox
-  background-color: red
-  #loginMsg
-    display: block
-    padding-top: 1em
-    padding-bottom: 1em
-    text-align: center
-    background-color: green
+#loginMsg
+  display: block
+  padding-top: 1em
+  padding-bottom: 1em
+  text-align: center
+  background-color: green
 </style>

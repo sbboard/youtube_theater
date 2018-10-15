@@ -1,8 +1,7 @@
 <template>
 <v-app id="app">
-    <onlineList/>
-    <Room/>
-    <ProjFooter/>
+    <Room id="room"/>
+    <ProjFooter id="footer"/>
 </v-app>
 </template>
 
@@ -23,5 +22,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
+#room
+  height: calc(100vh - 75px)
+#footer
+  height: 75px
+  background-color: blue
 </style>

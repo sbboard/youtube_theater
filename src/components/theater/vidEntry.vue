@@ -25,8 +25,8 @@ export default {
         submitVid(){
             this.vidId = getIdFromURL(this.vidEntered)
             this.vidLength = getTimeFromURL(this.vidLength)
-            
-            axios.get('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyAD-flcrX4AC5dslkYuBqyUTXin5vDpwsA&channelId=UC4cgiml8noQjB-St0qjxXPw',
+            console.log(this.$store.state.youtube)
+            axios.get(this.$store.state.youtube,
             {
                 params:{
                     id: this.vidId,

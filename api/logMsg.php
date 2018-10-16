@@ -23,7 +23,7 @@ else{
     $msg=$oldVal." has left the room";
 }
 
-$sqlquery="INSERT INTO $chatTable (room, user, msg, time,id) VALUES ('$room','ChatBot','$msg', now(), $indexNo)";
+$sqlquery="INSERT INTO $chatTable (room, user, msg, time,id) VALUES ('$room','','$msg', now(), $indexNo)";
 mysqli_query($con,$sqlquery) or die("Query to insert new record to firsttable failed with this error: ".mysql_error());
 
 //delete extra entries

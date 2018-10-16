@@ -12,7 +12,9 @@ $json.="\"chatlog\":[";
 
 $result = mysqli_query($con,"SELECT * FROM $chatTable WHERE room = '$roomNo'");
 while($row = mysqli_fetch_array($result)){
-        $json.="{\"username\":\"".$row['user']."\", \"message\":\"".$row['msg']."\", \"time\":\"".$row['time']."\", \"id\":\"".$row['id']."\"},";
+        $dateToNum=strtotime($row['time']);
+        $dateNow = date('H:ia',$dateToNum);
+        $json.="{\"username\":\"".$row['user']."\", \"message\":\"".$row['msg']."\", \"time\":\"".$dateNow."\", \"id\":\"".$row['id']."\"},";
 }
 mysqli_close($con);
 $json=rtrim($json,',');

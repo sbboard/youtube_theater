@@ -9,6 +9,8 @@ export const store = new Vuex.Store({
         username: "",
         room: "1",
         apiLocation: GFapi,
-        youtube: youtubeAPI
+        youtube: youtubeAPI,
+        hitLimit: false,
+        listGirth: 0
     }
 });

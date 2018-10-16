@@ -6,7 +6,7 @@
         <div v-else>
             <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>submit</button>
         </div>
-        Current Vid Limit: {{timeLimit/60}} minutes.
+        Current Vid Limit: {{timeLimit/60}} minutes. {{error}}
     </div>
 </template>
 
@@ -71,8 +71,6 @@ export default {
                         }
                         this.vidLength = minutes + parseInt(seconds)
                     } // end for loop
-                    //console.log the length
-                    console.log(this.vidLength)
                     if(this.vidLength > this.timeLimit){
                         this.error="Video is too long!"
                         console.log(this.error)
@@ -99,7 +97,9 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
+                if(response.data=="success"){
+                    this.error= this.vidName + " added to queue"
+                }
             })
             .catch(error => {
                 console.log(error);

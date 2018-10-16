@@ -30,7 +30,7 @@ export default {
     methods: {
         getChat: function(){           
             setInterval(function(){
-            axios.get('http://localhost/youtube_theater/api/text.php',
+            axios.get(this.$store.state.apiLocation + '/text.php',
             {
                 params:{
                     room: this.$store.state.room

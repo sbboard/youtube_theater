@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         sendLogStatus(){
-            axios.get('http://localhost/youtube_theater/api/logMsg.php',
+            axios.get(this.$store.state.apiLocation + '/logMsg.php',
             {
                 params:{
                     room: this.$store.state.room,

@@ -11,7 +11,7 @@ export default {
     methods: {
         beginCheck: function(){           
             setInterval(function(){
-            axios.get('http://localhost/youtube_theater/api/checkin.php',
+            axios.get(this.$store.state.apiLocation + '/checkin.php',
             {
                 params:{
                     username: this.$store.state.username

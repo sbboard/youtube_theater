@@ -24,7 +24,7 @@ export default {
     methods: {
         checkOnline: function(){           
             setInterval(function(){
-            axios.get('http://localhost/youtube_theater/api/onlineCheck.php',{
+            axios.get(this.$store.state.apiLocation + '/onlineCheck.php',{
                 params: {
                     room: this.$store.state.room
                 }   

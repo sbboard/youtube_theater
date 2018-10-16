@@ -38,7 +38,7 @@ export default {
                 "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
             }
-            axios.post('http://localhost/youtube_theater/api/login.php',params,headers)
+            axios.post(this.$store.state.apiLocation + '/login.php',params,headers)
             .then(response => {
                 console.log(response.data);
                 if(response.data==""){

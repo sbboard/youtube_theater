@@ -43,6 +43,7 @@ export default {
                 console.log(response.data);
                 if(response.data==""){
                     this.$store.state.username=this.loginName
+                    this.$cookies.set('username',this.$store.state.username);
                 }
                 else{
                     this.loginError=response.data

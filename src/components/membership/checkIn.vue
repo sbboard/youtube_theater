@@ -11,6 +11,7 @@ export default {
     methods: {
         beginCheck: function(){           
             setInterval(function(){
+                console.log(this.$cookies.get("username"));
             axios.get(this.$store.state.apiLocation + '/checkin.php',
             {
                 params:{

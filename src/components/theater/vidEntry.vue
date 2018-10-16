@@ -30,7 +30,7 @@ export default {
     methods:{
         submitVid(){
             this.vidId = getIdFromURL(this.vidEntered)
-            this.vidLength = getTimeFromURL(this.vidLength)
+            this.vidEntered = ""
             //get info from youtube
             axios.get(this.$store.state.youtube,
             {
@@ -99,6 +99,9 @@ export default {
             .then(response => {
                 if(response.data=="success"){
                     this.error= this.vidName + " added to queue"
+                }
+                else{
+                    console.log(response.data)
                 }
             })
             .catch(error => {

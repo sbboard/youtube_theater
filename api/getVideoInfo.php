@@ -4,8 +4,8 @@ require_once('includes/commonvars.php');
 
 $vidId = $_GET['vidId'];
 $vidLength = $_GET['vidLength'];
-$vidName = $_GET['vidName'];
-$vidCreator = $_GET['vidCreator'];
+$vidName = clean($_GET['vidName']);
+$vidCreator = clean($_GET['vidCreator']);
 $submitedBy = $_GET['username'];
 
 $result = mysqli_query($con,"SELECT COUNT(*) from $vidTable");

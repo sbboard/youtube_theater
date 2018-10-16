@@ -57,6 +57,7 @@ div
     .bladerunner
         text-align: center
         color: white
+        padding-top: 1em
     table
         width: 100%
         .nameField
@@ -64,4 +65,23 @@ div
         .msgField
         .datefield
             text-align: right
+tr:nth-of-type(1)
+    opacity: .10
+tr:nth-of-type(2)
+    opacity: .20
+tr:nth-of-type(3)
+    opacity: .30
+tr:nth-of-type(4)
+    opacity: .40
+tr:nth-of-type(5)
+    opacity: .50
+tr:nth-of-type(6)
+    opacity: .60
+tr:nth-of-type(7)
+    opacity: .70
+tr:nth-of-type(8)
+    opacity: .80
+tr:nth-of-type(9)
+    opacity: .90
+    
 </style>

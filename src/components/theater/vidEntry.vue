@@ -6,6 +6,7 @@
         <div v-else>
             <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>submit</button>
         </div>
+        Current Vid Limit: {{timeLimit/60}} minutes.
     </div>
 </template>
 
@@ -21,13 +22,16 @@ export default {
             vidLength: "",
             vidDetails: "",
             vidName: "",
-            vidCreator: ""
+            vidCreator: "",
+            error: "",
+            timeLimit: 480 //8 minutes
         }
     },
     methods:{
         submitVid(){
             this.vidId = getIdFromURL(this.vidEntered)
             this.vidLength = getTimeFromURL(this.vidLength)
+            //get info from youtube
             axios.get(this.$store.state.youtube,
             {
                 params:{
@@ -40,12 +44,66 @@ export default {
                 this.vidLength = this.vidDetails.items[0].contentDetails.duration
                 this.vidName = this.vidDetails.items[0].snippet.title
                 this.vidCreator = this.vidDetails.items[0].snippet.channelTitle
+                //checks for an hour mark in return
+                if(this.vidLength.includes("H")){
+                    this.error="Video is too long!"
+                    console.log(this.error)
+                }
+                else{
+                    let seconds = 0
+                    let minutes = 0
+                    let numCache = 0
+                    let timeArray = this.vidLength.split('')
+                    this.vidLength = 0
+                    //return through time array
+                    for(var i=0;i<=timeArray.length;i++){
+                        //if you found the minute
+                        if(!isNaN(timeArray[i])){
+                            numCache += timeArray[i]   
+                        }
+                        if(timeArray[i]=="M"){
+                            minutes = parseInt(numCache) * 60
+                            numCache = 0
+                        }
+                        if(timeArray[i]=="S"){
+                            seconds = numCache
+                            numCache = 0
+                        }
+                        this.vidLength = minutes + parseInt(seconds)
+                    } // end for loop
+                    //console.log the length
+                    console.log(this.vidLength)
+                    if(this.vidLength > this.timeLimit){
+                        this.error="Video is too long!"
+                        console.log(this.error)
+                    }
+                    else{
+                        this.enterData(this.vidLength,this.vidName,this.vidCreator)
+                    }
+                }
             })
             .catch(error => {
                 console.log(error);
             })
-
-            //console.log(this.vidId + " " + this.vidLength)
+        },
+        enterData(vidLength,vidName,vidCreator){
+            //put info into database
+            axios.get(this.$store.state.apiLocation + "/getVideoInfo.php",
+            {
+                params:{
+                    vidId: this.vidId,
+                    vidLength: vidLength,
+                    vidName: vidName,
+                    vidCreator: vidCreator,
+                    username: this.$store.state.username
+                }
+            })
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
         }
     }
 }

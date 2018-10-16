@@ -1,8 +1,8 @@
 <template>
     <div>
-        Playlist
+        <!--Playlist
         Chat
-        Online Now
+        Online Now-->
         <login/>
         <checkin v-if="this.$store.state.username!=''"/>
     </div>

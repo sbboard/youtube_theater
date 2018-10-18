@@ -6,11 +6,11 @@
             </div>
             <form onsubmit="return false;">
                 <label>Username</label>
-                <input v-model="username" type="text" required/>
+                <input v-model.lazy="username" type="text" required/>
                 <label>Password</label>
-                <input v-model="password" type="password" required/>
+                <input v-model.lazy="password" type="password" required/>
                 <label>Confirm Password</label>
-                <input v-model="passwordCheck" type="password" required/>
+                <input v-model.lazy="passwordCheck" type="password" required/>
                 <button @click="submitRegister()">Send</button>
             </form>
         </div>

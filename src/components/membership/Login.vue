@@ -3,9 +3,9 @@
         <div v-if="this.$store.state.username==''">
             <form onsubmit="return false;">
             Login:
-            <input type='text' required v-model='loginName'/>
+            <input type='text' required v-model.lazy='loginName'/>
             Password:{{this.$store.state.username}}
-            <input type='password' v-model='loginPass' required/>
+            <input type='password' v-model.lazy='loginPass' required/>
             <button @click="submitLogin()">Send</button>
             </form>
             {{loginError}}

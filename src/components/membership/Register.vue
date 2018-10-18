@@ -4,14 +4,14 @@
             <div v-if="errorCheck">
                 {{errorCheck}}
             </div>
-            <form onsubmit="return false;">
+            <form>
                 <label>Username</label>
                 <input v-model.lazy="username" type="text" required/>
                 <label>Password</label>
                 <input v-model.lazy="password" type="password" required/>
                 <label>Confirm Password</label>
                 <input v-model.lazy="passwordCheck" type="password" required/>
-                <button @click="submitRegister()">Send</button>
+                <button @click.prevent="submitRegister()">Send</button>
             </form>
         </div>
         <div id="success" v-else>

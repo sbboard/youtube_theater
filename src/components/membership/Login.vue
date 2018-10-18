@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="this.$store.state.username==''">
-            <form onsubmit="return false;">
+            <form>
             Login:
             <input type='text' required v-model.lazy='loginName'/>
             Password:{{this.$store.state.username}}
@@ -12,7 +12,7 @@
         </div>
         <div v-else>
             Hello {{this.$store.state.username}}!
-            <button @click="submitLogout()">Logout</button>
+            <button @click.prevent="submitLogout()">Logout</button>
         </div>
     </div>
 </template>

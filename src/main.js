@@ -11,9 +11,11 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
-import {store} from './store/store.js';
+import {store} from './store.js';
+import {router} from './router.js';
 
 new Vue({
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')

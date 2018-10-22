@@ -4,7 +4,9 @@
         Chat
         Online Now-->
         <!--<login/>-->
+        <router-link to="/">Chat</router-link>
         <router-link to="/register">Register</router-link>
+        <router-link to="/onlineNow">Online Now</router-link>
         <checkin v-if="this.$store.state.username!=''"/>
     </div>
 </template>

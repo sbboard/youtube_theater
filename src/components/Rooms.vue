@@ -6,13 +6,7 @@
     </v-flex>
     <v-flex xs4 class="largeFlex">
         <rightMenu id="rightMenu"/>
-        <Chat id="chatRoom"/>
-        <div id="loginMsg">
-        <sendMessages v-if="this.$store.state.username!=''"/>
-        <div v-else>
-        Login to Participate in Chat
-        </div>
-        </div>
+        <router-view></router-view>
     </v-flex>
 </v-layout>
 </template>

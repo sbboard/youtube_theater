@@ -3,7 +3,8 @@
         <!--Playlist
         Chat
         Online Now-->
-        <login/>
+        <!--<login/>-->
+        <router-link to="/register">Register</router-link>
         <checkin v-if="this.$store.state.username!=''"/>
     </div>
 </template>

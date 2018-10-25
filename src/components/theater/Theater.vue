@@ -1,6 +1,6 @@
 <template>
     <div>
-        <youtube :video-id="videoId" @ended="ended" :player-vars="playerVars" player-width="100%" player-height="100%" id="youtTubeVid"></youtube>
+        <youtube :video-id="videoId" @ended="ended" @playing="playing" :player-vars="playerVars" player-width="100%" player-height="100%" id="youtTubeVid" ref="youtube"></youtube>
     </div>
 </template>
 
@@ -12,12 +12,16 @@ export default {
     data(){
         return{
             videoId: "",
+            nextVidId: "",
+            initTime: "",
+            firstPunch: 0,
             playerVars: {
                 'autoplay': 1,
                 'controls': 0, 
                 'disablekb': 1,
                 'fs': 1,
-                'modestbranding': 1
+                'modestbranding': 1,
+                'startSeconds': 15
             }
         }
     },
@@ -36,6 +40,8 @@ export default {
                 }
                 else{
                     this.videoId = response.data.currentVid
+                    this.nextVidId = response.data.nextVid
+                    this.initTime = response.data.currentTime
                 }
             })
             .catch(error => {
@@ -43,11 +49,20 @@ export default {
             })
     },
     methods: {
-        ready (event) {
-            this.player = event.player
-        },
         ended(){
             console.log("it's over")
+            //start to play next vid
+        },
+        playing(){
+            if(this.firstPunch < 1){
+                this.player.seekTo(this.initTime, true)
+                this.firstPunch++
+            }
+        }
+    },
+    computed: {
+        player() {
+            return this.$refs.youtube.player
         }
     }
 }
@@ -56,4 +71,5 @@ export default {
 <style lang="sass" scoped>
 #youtTubeVid
     height: 100%
+    pointer-events: none
 </style>

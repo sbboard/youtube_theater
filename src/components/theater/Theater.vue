@@ -52,12 +52,29 @@ export default {
         ended(){
             console.log("it's over")
             //start to play next vid
+            axios.get(this.$store.state.apiLocation + '/nextVid.php',
+            {
+                params:{
+                    endedVid: this.videoId
+                }
+            })
+            .then(response => {
+                console.log(response.data)
+                this.videoId = this.nextVidId
+                this.nextVidId = response.data
+            })
+            .catch(error => {
+                console.log(error);
+            })
         },
         playing(){
             if(this.firstPunch < 1){
                 this.player.seekTo(this.initTime, true)
                 this.firstPunch++
             }
+        },
+        beginNextVid(){
+            console.log(this.videoId)
         }
     },
     computed: {

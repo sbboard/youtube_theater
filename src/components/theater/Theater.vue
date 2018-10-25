@@ -34,7 +34,6 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
                 if(response.data==""){
                     this.videoId= "EzKImzjwGyM"
                 }
@@ -50,7 +49,6 @@ export default {
     },
     methods: {
         ended(){
-            console.log("it's over")
             //start to play next vid
             axios.get(this.$store.state.apiLocation + '/nextVid.php',
             {
@@ -59,7 +57,6 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
                 this.videoId = this.nextVidId
                 this.nextVidId = response.data
             })

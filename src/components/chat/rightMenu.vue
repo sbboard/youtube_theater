@@ -5,8 +5,9 @@
         Online Now-->
         <!--<login/>-->
         <router-link to="/">Chat</router-link>
-        <router-link to="/register">Register</router-link>
+        <router-link to="/register" v-if="this.$store.state.username==''">Register</router-link>
         <router-link to="/onlineNow">Online Now</router-link>
+        <router-link to="/login">Login</router-link>
         <checkin v-if="this.$store.state.username!=''"/>
     </div>
 </template>

@@ -18,7 +18,7 @@ export default {
     },
     data(){
         return{
-            onlineList: {}
+            onlineList: {"online":[{"username":"Loading..."}]}
         }
     },
     methods: {
@@ -31,6 +31,9 @@ export default {
             })
             .then(response => {
                 this.onlineList = response.data
+                if(this.onlineList.online.length == ""){
+                    this.onlineList = {"online":[{"username":"No one is here."}]}
+                }
             })
             .catch(error => {
                 console.log(error);

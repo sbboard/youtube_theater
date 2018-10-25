@@ -13,12 +13,14 @@
 <script>
 import getMessages from './getMessages'
 import Chat from './Chat'
+import sendMessages from './sendMessages'
 
 export default {
   name: 'ChatClient',
   components: {
     getMessages,
-    Chat
+    Chat,
+    sendMessages
   }
 }
 </script>

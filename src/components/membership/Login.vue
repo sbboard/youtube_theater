@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="this.$store.state.username==''">
-            <form>
+            <form v-on:click.self.prevent>
             Login:
             <input type='text' required v-model.lazy='loginName'/>
             Password:{{this.$store.state.username}}

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <getMessages/>
+        <getMessages id="chatRoom"/>
         <div id="loginMsg">
             <sendMessages v-if="this.$store.state.username!=''"/>
             <div v-else>
@@ -28,7 +28,7 @@ export default {
     padding: 1em 0
 #chatRoom
   background-color: red
-  height: calc(100% - 7em)
+  height: calc(100vh - 7em)
   overflow-y: scroll
 #footer
     background-color: blue

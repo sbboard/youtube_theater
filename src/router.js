@@ -29,5 +29,10 @@ export default new Router({
     name: "login",
     component: Login
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if(to.name == 'chat'){
+    return { x: 0, y: 100 }
+    }
+  }
 });

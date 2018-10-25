@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import Chat from './chat/Chat'
 import Theater from './theater/Theater'
 import ProjFooter from './Footer'
 import sendMessages from './chat/sendMessages'
@@ -22,7 +21,6 @@ import axios from 'axios'
 export default {
     name: "room",
     components: {
-        Chat,
         ProjFooter,
         Theater,
         sendMessages,

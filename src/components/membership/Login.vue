@@ -3,10 +3,10 @@
         <div v-if="this.$store.state.username==''">
             <form v-on:click.self.prevent>
             Login:
-            <input type='text' required v-model.lazy='loginName'/>
-            Password:{{this.$store.state.username}}
-            <input type='password' v-model.lazy='loginPass' required/>
-            <button @click="submitLogin()">Send</button>
+            <input type="text" id="username" value="peen" v-model="loginName" @blur="$v.loginName.$touch()">
+            Password:
+            <input type='password' v-model='loginPass' @blur="$v.loginPass.$touch()">
+            <button @click="submitLogin()" :disabled="$v.$invalid">Login</button>
             </form>
             {{loginError}}
         </div>
@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import { required } from 'vuelidate/lib/validators'
 export default {
     name: 'login',
     data(){
@@ -26,6 +27,14 @@ export default {
             loginPass:"",
             loginName:"",
             loginError:""
+        }
+    },
+    validations: {
+        loginName: {
+            required
+        },
+        loginPass: {
+            required
         }
     },
     methods:{
@@ -47,8 +56,7 @@ export default {
                 }
                 else{
                     this.loginError=response.data
-                    this.passwordCheck=""
-                    this.password=""
+                    this.loginPass=""
                 }
             })
             .catch(error => {

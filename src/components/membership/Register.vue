@@ -6,12 +6,21 @@
             </div>
             <form>
                 <label>Username</label>
-                <input v-model.lazy="username" type="text" required/>
+                <input v-model.lazy="username" @blur="$v.username.$touch()" id="username" type="text"/> <br/>
+                <span v-if="$v.username.checkSame === false && username.length > 0">
+                    Username already taken
+                </span>
                 <label>Password</label>
-                <input v-model.lazy="password" type="password" required/>
+                <input v-model.lazy="password" @blur="$v.password.$touch()" type="password"/><br/>
+                <span v-if="$v.password.$anyError && password.length > 0">
+                    password must be at least 6 characters
+                </span>
                 <label>Confirm Password</label>
-                <input v-model.lazy="passwordCheck" type="password" required/>
-                <button @click.prevent="submitRegister()">Send</button>
+                <input v-model.lazy="passwordCheck" type="password" @blur="$v.passwordCheck.$touch()"/><br/>
+                <span v-if="$v.passwordCheck.$anyError && passwordCheck.length > 0">
+                    passwords don't match
+                </span>
+                <button @click.prevent="submitRegister()" :disabled="$v.$invalid">Register</button>
             </form>
         </div>
         <div id="success" v-else>
@@ -22,6 +31,8 @@
 
 <script>
 import axios from 'axios'
+import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+
 export default {
     name:"Register",
     data(){
@@ -32,6 +43,31 @@ export default {
             password:"",
             passwordCheck:""
         }
+    },
+    validations:{
+            username: {
+                required,
+                checkSame: val => {
+                    if(val.length === 0) return false
+                    return axios.get('http://localhost/youtube_theater/api/checkUsernameDupe.php',
+                    {
+                    params:{
+                        name: val
+                    }
+                    })
+                    .then(res => {
+                        return (res.data === true)? true:false
+                    })
+                }
+            },
+            password: {
+                required,
+                minLength: minLength(6)
+            },
+            passwordCheck: {
+                required,
+                sameAs: sameAs('password')
+            }
     },
     methods:{
         submitRegister: function(){

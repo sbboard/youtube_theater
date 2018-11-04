@@ -1,10 +1,13 @@
 <template>
     <div>
         <div v-if="this.$store.state.username!=''">
-            <input type="text" v-model="vidEntered" /><button @click="submitVid()">submit</button>
+            <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
         </div>
         <div v-else>
             <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>submit</button>
+        </div>
+        <div v-if="$v.$error && vidEntered.length > 0">
+            Must be a youtube video
         </div>
         Current Vid Limit: {{timeLimit/60}} minutes. {{error}}
     </div>
@@ -12,7 +15,12 @@
 
 <script>
 import { getIdFromURL, getTimeFromURL } from 'vue-youtube-embed'
+import { required, url, } from 'vuelidate/lib/validators'
 import axios from 'axios'
+
+
+const checkTube = (value) => value.indexOf('youtube.com') >= 0 || value.indexOf('youtu.be') >= 0
+
 export default {
     name: "vidEntry",
     data(){
@@ -25,6 +33,15 @@ export default {
             vidCreator: "",
             error: "",
             timeLimit: 480 //8 minutes
+        }
+    },
+    validations() {
+        return{
+            vidEntered: {
+                required,
+                url,
+                checkTube
+            }
         }
     },
     methods:{

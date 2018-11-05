@@ -1,6 +1,7 @@
 <template>
     <div>
         <p class="bladerunner">All those moments will be lost in time, like tears in rain.</p>
+        <span v-if="firstTime < 1">Loading...</span>
         <table>
             <tr v-for="(value, key) in chatLog.chatlog" :key=key>
                 <td class="nameField">{{chatLog.chatlog[key].username}}</td>

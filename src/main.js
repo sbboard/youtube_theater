@@ -13,6 +13,11 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuelidate)
 Vue.use(VueYouTubeEmbed)
 Vue.use(Vuetify)
+Vue.directive('box-shadow', {
+  bind(el,binding,vnode){
+    el.style.boxShadow = "0px 3px 5px #666"
+  }
+})
 
 new Vue({
   store,

@@ -32,7 +32,7 @@ export default {
             vidName: "",
             vidCreator: "",
             error: "",
-            timeLimit: 480 //8 minutes
+            timeLimit: 5 * 60
         }
     },
     validations() {

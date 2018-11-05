@@ -3,11 +3,14 @@
         <!--Playlist
         Chat
         Online Now-->
-        <!--<login/>-->
-        <router-link to="/">Chat</router-link>
+        <login/>
+        <router-link to="/">Chat</router-link> . 
+        <router-link to="/onlineNow">Online Now</router-link> . 
         <router-link to="/register" v-if="this.$store.state.username==''">Register</router-link>
-        <router-link to="/onlineNow">Online Now</router-link>
-        <router-link to="/login">Login</router-link>
+        <div v-if="this.$store.state.username!=''">
+            <button @click.prevent="submitLogout()">Logout</button>
+        </div>
+        <!--<router-link to="/login">Login</router-link>-->
         <checkin v-if="this.$store.state.username!=''"/>
     </div>
 </template>
@@ -21,6 +24,13 @@ export default {
     components: {
         login,
         checkin
+    },
+    methods: {
+        submitLogout(){
+            this.$store.state.username=""
+            this.loginPass=""
+            this.loginName=""
+        }
     }
 }
 </script>

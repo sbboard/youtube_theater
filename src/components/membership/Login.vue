@@ -12,7 +12,6 @@
         </div>
         <div v-else>
             Hello {{this.$store.state.username}}!
-            <button @click.prevent="submitLogout()">Logout</button>
         </div>
     </div>
 </template>
@@ -54,6 +53,9 @@ export default {
                 if(response.data==""){
                     this.$store.state.username=this.loginName
                     this.$cookies.set('username',this.$store.state.username);
+                    if(this.$router.currentRoute.name == "register"){
+                        this.$router.push('/');
+                    }
                 }
                 else{
                     this.loginError=response.data
@@ -63,11 +65,6 @@ export default {
             .catch(error => {
                 console.log(error);
             })
-        },
-        submitLogout(){
-            this.$store.state.username=""
-            this.loginPass=""
-            this.loginName=""
         }
     }
 }

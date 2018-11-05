@@ -44,6 +44,11 @@ export default {
             passwordCheck:""
         }
     },
+    beforeCreate() {
+      if (this.$store.state.username != "") {
+        this.$router.replace('/')
+      }
+    },
     validations:{
             username: {
                 required,
@@ -94,6 +99,7 @@ export default {
                     if(response.data=="success"){
                         this.success=true;
                         this.$store.state.username=this.username
+                        this.$router.push('/');
                     }
                     else{
                         this.errorCheck=response.data
@@ -107,8 +113,7 @@ export default {
                 this.msg = "";
                 }
         }
-    }
-    
+    },
 }
 </script>
 

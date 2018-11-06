@@ -6,7 +6,7 @@
             </div>
             <form>
                 <label>Username</label>
-                <input v-model.lazy="username" @blur="$v.username.$touch()" id="username" type="text"/> <br/>
+                <input v-model.lazy="username" @blur="$v.username.$touch()" id="usernameReg" type="text"/> <br/>
                 <span v-if="$v.username.checkSame === false && username.length > 0">
                     Username already taken
                 </span>

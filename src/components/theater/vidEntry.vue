@@ -9,7 +9,8 @@
         <div v-if="$v.$error && vidEntered.length > 0">
             Must be a youtube video
         </div>
-        Current Vid Limit: {{timeLimit/60}} minutes. {{error}}
+        Current Vid Limit: {{timeLimit/60}} minutes. {{error}}<br/>
+        Video Queue: {{queueSize}}/{{queueMax}} <span v-if="queueSize == queueMax">(full)</span>
     </div>
 </template>
 
@@ -32,7 +33,9 @@ export default {
             vidName: "",
             vidCreator: "",
             error: "",
-            timeLimit: 5 * 60
+            timeLimit: 5 * 60,
+            queueMax: 10,
+            queueSize: 0,
         }
     },
     validations() {

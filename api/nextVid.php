@@ -4,20 +4,16 @@ require_once('includes/commonvars.php');
 
 $endedVid = $_GET['endedVid'];
 
+//delete ended vid
+$deleteRun = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidID = '$endedVid' AND vidNo = 0");
+while($rowR = mysqli_fetch_array($deleteRun)){
+    mysqli_query($con,"DELETE FROM $vidTable WHERE vidID = '$endedVid' AND vidNo = 0");
+    mysqli_query($con,"UPDATE $vidTable SET vidNo = vidNo - 1");
 
-//if vid is still there{
-//delete vid
-//move vids up
-//}
+}
 
-//return top vid
-
-//////
-// Temporarily just loads the second vid in the thing.
-// This wont work after deletion.
-//////
 $currentVid="";
-$result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 1");
+$result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 0");
 while($row = mysqli_fetch_array($result)){
     $currentVid.=$row['vidID'];
 }

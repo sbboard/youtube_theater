@@ -16,7 +16,7 @@
                     password must be at least 6 characters
                 </span>
                 <label>Confirm Password</label>
-                <input v-model.lazy="passwordCheck" type="password" @blur="$v.passwordCheck.$touch()"/><br/>
+                <input v-model="passwordCheck" type="password" @input="$v.passwordCheck.$touch()"/><br/>
                 <span v-if="$v.passwordCheck.$anyError && passwordCheck.length > 0">
                     passwords don't match
                 </span>

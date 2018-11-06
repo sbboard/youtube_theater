@@ -54,7 +54,7 @@ export default {
                 required,
                 checkSame: val => {
                     if(val.length === 0) return false
-                    return axios.get('http://localhost/youtube_theater/api/checkUsernameDupe.php',
+                    return axios.get('http://gang-fight.com/youtube_theater/api/checkUsernameDupe.php',
                     {
                     params:{
                         name: val

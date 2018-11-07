@@ -49,6 +49,7 @@ export default {
     },
     methods: {
         ended(){
+            console.log("ended")
             //start to play next vid
             axios.get(this.$store.state.apiLocation + '/nextVid.php',
             {

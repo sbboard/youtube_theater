@@ -125,7 +125,7 @@ export default {
                     this.error= this.vidName + " added to queue"
                 }
                 else{
-                    console.log(response.data)
+                    this.error=response.data
                 }
             })
             .catch(error => {

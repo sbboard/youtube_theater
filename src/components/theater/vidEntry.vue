@@ -1,7 +1,12 @@
 <template>
     <div>
         <div v-if="this.$store.state.username!=''">
-            <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
+            <div v-if="queueSize < queueMax">
+                <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
+            </div>
+            <div v-else>
+                <input type="text" placeholder="queue is full" disabled/><button disabled>submit</button>
+            </div>
         </div>
         <div v-else>
             <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>submit</button>
@@ -18,7 +23,6 @@
 import { getIdFromURL, getTimeFromURL } from 'vue-youtube-embed'
 import { required, url, } from 'vuelidate/lib/validators'
 import axios from 'axios'
-
 
 const checkTube = (value) => value.indexOf('youtube.com') >= 0 || value.indexOf('youtu.be') >= 0
 
@@ -127,7 +131,26 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+        },
+        queueCheck: function(){           
+            setInterval(function(){
+            axios.get(this.$store.state.apiLocation + '/getQueueSize.php',
+            {
+                params:{
+                    room: this.$store.state.room
+                }
+            })
+            .then(response =>{
+                this.queueSize = response.data
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            }.bind(this), 1000);
         }
+    },
+    created(){
+        this.queueCheck() 
     }
 }
 </script>

@@ -22,7 +22,8 @@ export default {
                 'disablekb': 1,
                 'fs': 1,
                 'modestbranding': 1,
-                'startSeconds': 15
+                'startSeconds': 15,
+                'onDefault': false
             }
         }
     },
@@ -37,9 +38,11 @@ export default {
             .then(response => {
                 if(response.data==""){
                     this.videoId= this.placeHolderVidID
+                    this.onDefault = true
                 }
                 else{
                     this.videoId = response.data.currentVid
+                    this.onDefault = false
                     if(response.data.nextVid){
                         this.nextVidId = response.data.nextVid
                     }
@@ -48,6 +51,7 @@ export default {
                     }
                     this.initTime = response.data.currentTime
                 }
+                this.DefaultCheck(this.onDefault)
             })
             .catch(error => {
                 console.log(error);
@@ -55,7 +59,6 @@ export default {
     },
     methods: {
         ended(){
-            console.log("ended")
             //start to play next vid
             axios.get(this.$store.state.apiLocation + '/nextVid.php',
             {
@@ -70,17 +73,26 @@ export default {
                     console.log("1")
                     console.log(this.nextVidId)
                     this.videoId = this.nextVidId
+                    if(this.nextVidId != this.placeHolderVidID){
+                        this.onDefault = false
+                    }
+                    else{
+                        this.onDefault = true
+                    }
                 }
                 else{
                     console.log("2")
                     this.videoId = this.placeHolderVidID
                     this.player.seekTo(0, true)
+                    this.onDefault = true
                 }
                 //define next video
                 if(response.data != ""){
                     console.log("3")
                     this.nextVidId = response.data
+                    this.onDefault = false
                 }
+                this.DefaultCheck(this.onDefault)
             })
             .catch(error => {
                 console.log(error);
@@ -94,6 +106,14 @@ export default {
         },
         beginNextVid(){
             console.log(this.videoId)
+        },
+        DefaultCheck(bool){
+            if(bool){
+                console.log(bool)
+            }
+            else{
+                console.log(bool)
+            }
         }
     },
     computed: {

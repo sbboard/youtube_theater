@@ -39,7 +39,13 @@ export default {
                 }
                 else{
                     this.videoId = response.data.currentVid
-                    this.nextVidId = response.data.nextVid
+                    console.log(response.data)
+                    if(response.data.nextVid){
+                        this.nextVidId = response.data.nextVid
+                    }
+                    else{
+                        this.nextVidId= "EzKImzjwGyM"
+                    }
                     this.initTime = response.data.currentTime
                 }
             })

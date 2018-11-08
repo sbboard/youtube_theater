@@ -15,6 +15,7 @@ export default {
             nextVidId: "",
             initTime: "",
             firstPunch: 0,
+            placeHolderVidID: "EzKImzjwGyM",
             playerVars: {
                 'autoplay': 1,
                 'controls': 0, 
@@ -35,7 +36,7 @@ export default {
             })
             .then(response => {
                 if(response.data==""){
-                    this.videoId= "EzKImzjwGyM"
+                    this.videoId= this.placeHolderVidID
                 }
                 else{
                     this.videoId = response.data.currentVid
@@ -44,7 +45,7 @@ export default {
                         this.nextVidId = response.data.nextVid
                     }
                     else{
-                        this.nextVidId= "EzKImzjwGyM"
+                        this.nextVidId= this.placeHolderVidID
                     }
                     this.initTime = response.data.currentTime
                 }

@@ -35,12 +35,12 @@ export default {
                 }
             })
             .then(response => {
+                console.log(response.data)
                 if(response.data==""){
                     this.videoId= this.placeHolderVidID
                 }
                 else{
                     this.videoId = response.data.currentVid
-                    console.log(response.data)
                     if(response.data.nextVid){
                         this.nextVidId = response.data.nextVid
                     }
@@ -65,8 +65,14 @@ export default {
                 }
             })
             .then(response => {
+                console.log(response.data)
                 this.videoId = this.nextVidId
-                this.nextVidId = response.data
+                if(response.data != ""){
+                    this.nextVidId = response.data
+                }
+                else{
+                    this.nextVid = this.placeHolderVidID
+                }
             })
             .catch(error => {
                 console.log(error);

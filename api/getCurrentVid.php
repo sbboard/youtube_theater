@@ -18,7 +18,7 @@ while($row = mysqli_fetch_array($result)){
     $currentVid.="}";
 }
 
-if($nextVidFound === false){
+if($nextVidFound === false && $currentVid != ""){
     $currentVid.="}";
 }
 

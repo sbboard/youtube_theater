@@ -12,10 +12,10 @@ export default {
     data(){
         return{
             videoId: "",
-            nextVidId: "",
             initTime: "",
             firstPunch: 0,
             placeHolderVidID: "EzKImzjwGyM",
+            nextVidId: "",
             playerVars: {
                 'autoplay': 1,
                 'controls': 0, 
@@ -35,7 +35,6 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
                 if(response.data==""){
                     this.videoId= this.placeHolderVidID
                 }
@@ -65,13 +64,22 @@ export default {
                 }
             })
             .then(response => {
+                //define current video
                 console.log(response.data)
-                this.videoId = this.nextVidId
-                if(response.data != ""){
-                    this.nextVidId = response.data
+                if(this.nextVidId != ""){
+                    console.log("1")
+                    console.log(this.nextVidId)
+                    this.videoId = this.nextVidId
                 }
                 else{
-                    this.nextVid = this.placeHolderVidID
+                    console.log("2")
+                    this.videoId = this.placeHolderVidID
+                    this.player.seekTo(0, true)
+                }
+                //define next video
+                if(response.data != ""){
+                    console.log("3")
+                    this.nextVidId = response.data
                 }
             })
             .catch(error => {

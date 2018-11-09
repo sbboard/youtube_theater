@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
         youtube: youtubeAPI,
         hitLimit: false,
         listGirth: 0,
-        queueSize: 0
+        queueSize: 0,
+        host: false
     }
 });

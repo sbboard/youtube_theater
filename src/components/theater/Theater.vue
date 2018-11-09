@@ -48,7 +48,6 @@ export default {
         runCheck(){         
             var self = this;
             CheckQueue =setInterval(function(){
-                console.log("peen")
                 if(self.$store.state.queueSize > 0){
                     self.jumpStart()
                 }
@@ -75,7 +74,6 @@ export default {
                     }
                     this.initTime = response.data.currentTime
                 }
-                this.DefaultCheck(this.onDefault)
             })
             .catch(error => {
                 console.log(error);
@@ -99,7 +97,6 @@ export default {
                     }
                     //if the new vid is the placeholder
                     else{
-                        console.log("1")
                         this.onDefault = true
                     }
                 }
@@ -114,7 +111,6 @@ export default {
                 }else{
                     this.nextVidId = ""
                 }
-                this.DefaultCheck(this.onDefault)
             })
             .catch(error => {
                 console.log(error);
@@ -124,14 +120,6 @@ export default {
             if(this.firstPunch < 1){
                 this.player.seekTo(this.initTime, true)
                 this.firstPunch++
-            }
-        },
-        DefaultCheck(bool){
-            if(bool){
-                console.log("Default Vid? " + bool)
-            }
-            else{
-                console.log("Default Vid? " + bool)
             }
         }
     },

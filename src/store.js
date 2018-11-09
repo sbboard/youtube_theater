@@ -14,6 +14,7 @@ export const store = new Vuex.Store({
         apiLocation: GFapi,
         youtube: youtubeAPI,
         hitLimit: false,
-        listGirth: 0
+        listGirth: 0,
+        queueSize: 0
     }
 });

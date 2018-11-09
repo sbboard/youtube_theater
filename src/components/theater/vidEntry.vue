@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="this.$store.state.username!=''">
-            <div v-if="queueSize < queueMax">
+            <div v-if="this.$store.state.queueSize < queueMax">
                 <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
             </div>
             <div v-else>
@@ -15,7 +15,7 @@
             Must be a youtube video
         </div>
         Current Vid Limit: {{timeLimit/60}} minutes. {{error}}<br/>
-        Video Queue: {{queueSize}}/{{queueMax}} <span v-if="queueSize == queueMax">(full)</span>
+        Video Queue: {{this.$store.state.queueSize}}/{{queueMax}} <span v-if="this.$store.state.queueSize == queueMax">(full)</span>
     </div>
 </template>
 
@@ -39,8 +39,7 @@ export default {
             vidCreator: "",
             error: "",
             timeLimit: 5 * 60,
-            queueMax: 10,
-            queueSize: 0,
+            queueMax: 10
         }
     },
     watch:{
@@ -152,12 +151,12 @@ export default {
                 }
             })
             .then(response =>{
-                this.queueSize = response.data
+                this.$store.state.queueSize = response.data
             })
             .catch(error => {
                 console.log(error);
             })
-            }.bind(this), 1000);
+            }.bind(this), 500);
         }
     },
     created(){

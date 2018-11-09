@@ -8,11 +8,20 @@ $password = $_POST['password'];
 $username = clean($_POST['username']);
 $savedpass = null;
 $foundUsername = false;
+$hostFound = false;
 
 $result = mysqli_query($con, "SELECT * FROM $memberTable WHERE user='$username'");
 while($row = mysqli_fetch_assoc($result)){
     $foundUsername = true;
     $savedpass = $row['password'];
+
+    $searchForHost = mysqli_query($con, "SELECT * FROM $memberTable WHERE host='1'");
+    while($rowS = mysqli_fetch_assoc($searchForHost)){
+        $hostFound = true;
+    }
+    if(!$hostFound){
+        mysqli_query($con,"UPDATE $memberTable SET host = '1' WHERE user = '$username'");
+    }
 }
 if($foundUsername){
     if(!password_verify($password,$savedpass)){

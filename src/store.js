@@ -16,6 +16,6 @@ export const store = new Vuex.Store({
         hitLimit: false,
         listGirth: 0,
         queueSize: 0,
-        host: false
+        currentTime : 0
     }
 });

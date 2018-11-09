@@ -7,6 +7,8 @@
 <script>
 import axios from 'axios'
 
+var CheckQueue
+
 export default {
     name: "theater",
     data(){
@@ -16,18 +18,43 @@ export default {
             firstPunch: 0,
             placeHolderVidID: "XqAX-xIFomw",
             nextVidId: "",
+            onDefault: false,
             playerVars: {
                 'autoplay': 1,
                 'controls': 0, 
                 'disablekb': 1,
                 'fs': 1,
                 'modestbranding': 1,
-                'startSeconds': 15,
-                'onDefault': false
+                'startSeconds': 15
+            }
+        }
+    },
+    watch:{
+        onDefault: function(){
+            //if the default video is playing
+            if(this.onDefault){
+                this.runCheck()
+            }
+            //if it is not
+            else{
+                clearInterval(CheckQueue)
             }
         }
     },
     created(){
+        this.jumpStart()
+    },
+    methods: {
+        runCheck(){         
+            var self = this;
+            CheckQueue =setInterval(function(){
+                console.log("peen")
+                if(self.$store.state.queueSize > 0){
+                    self.jumpStart()
+                }
+            }, 500);
+        },
+        jumpStart(){
             //get vid Info
             axios.get(this.$store.state.apiLocation + '/getCurrentVid.php',
             {
@@ -53,8 +80,7 @@ export default {
             .catch(error => {
                 console.log(error);
             })
-    },
-    methods: {
+        },
         ended(){
             axios.get(this.$store.state.apiLocation + '/nextVid.php',
             {

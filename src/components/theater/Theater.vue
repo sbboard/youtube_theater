@@ -64,12 +64,16 @@ export default {
             })
             .then(response => {
                 //define current video
+                //if there's a next vid in cue
                 if(this.nextVidId != ""){
                     this.videoId = this.nextVidId
+                    //if the new video is the placeholder
                     if(this.nextVidId != this.placeHolderVidID){
                         this.onDefault = false
                     }
+                    //if the new vid is the placeholder
                     else{
+                        console.log("1")
                         this.onDefault = true
                     }
                 }
@@ -81,10 +85,8 @@ export default {
                 //define next video
                 if(response.data != ""){
                     this.nextVidId = response.data
-                    this.onDefault = false
                 }else{
-                    this.nextVidId = "";
-                    this.onDefault = true
+                    this.nextVidId = ""
                 }
                 this.DefaultCheck(this.onDefault)
             })

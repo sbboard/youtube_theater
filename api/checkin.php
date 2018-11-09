@@ -6,5 +6,6 @@ $time = date("Y-m-d H:i:s");
 $user=$_GET['username'];
 
 mysqli_query($con,"UPDATE $memberTable SET lastCheckin = '$time', online=1 WHERE user = '$user'");
+include('checkHost.php');
 mysqli_close($con);
 ?>

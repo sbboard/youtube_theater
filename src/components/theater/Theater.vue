@@ -14,7 +14,7 @@ export default {
             videoId: "",
             initTime: "",
             firstPunch: 0,
-            placeHolderVidID: "EzKImzjwGyM",
+            placeHolderVidID: "XqAX-xIFomw",
             nextVidId: "",
             playerVars: {
                 'autoplay': 1,

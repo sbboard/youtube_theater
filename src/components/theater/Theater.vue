@@ -46,13 +46,9 @@ export default {
                     if(response.data.nextVid){
                         this.nextVidId = response.data.nextVid
                     }
-                    else{
-                        this.nextVidId= this.placeHolderVidID
-                    }
                     this.initTime = response.data.currentTime
                 }
                 this.DefaultCheck(this.onDefault)
-                console.log("first video: " + this.videoId)
             })
             .catch(error => {
                 console.log(error);
@@ -68,11 +64,8 @@ export default {
             })
             .then(response => {
                 //define current video
-                console.log("gotten from nextvid.php: " + response.data)
                 if(this.nextVidId != ""){
-                    console.log("old Nextvid: " + this.nextVidId)
                     this.videoId = this.nextVidId
-                    console.log("now playing: " + this.videoId)
                     if(this.nextVidId != this.placeHolderVidID){
                         this.onDefault = false
                     }
@@ -88,8 +81,10 @@ export default {
                 //define next video
                 if(response.data != ""){
                     this.nextVidId = response.data
-                    console.log("Next video: " + this.nextVidId)
                     this.onDefault = false
+                }else{
+                    this.nextVidId = "";
+                    this.onDefault = true
                 }
                 this.DefaultCheck(this.onDefault)
             })

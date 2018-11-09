@@ -38,7 +38,7 @@ export default {
             vidName: "",
             vidCreator: "",
             error: "",
-            timeLimit: 5 * 60,
+            timeLimit: 30 * 60,
             queueMax: 10
         }
     },

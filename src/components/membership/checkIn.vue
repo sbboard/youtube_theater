@@ -14,7 +14,8 @@ export default {
             axios.get(this.$store.state.apiLocation + '/checkin.php',
             {
                 params:{
-                    username: this.$store.state.username
+                    username: this.$store.state.username,
+                    currentVidTime: this.$store.state.currentTime
                 }
             })
             .catch(error => {

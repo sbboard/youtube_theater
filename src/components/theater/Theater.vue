@@ -121,6 +121,10 @@ export default {
                 this.player.seekTo(this.initTime, true)
                 this.firstPunch++
             }
+            var self = this;
+            setInterval(function(){
+                self.$store.state.currentTime = self.player.getCurrentTime()
+            }, 500);
         }
     },
     computed: {

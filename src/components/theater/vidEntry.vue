@@ -25,6 +25,7 @@ import { required, url, } from 'vuelidate/lib/validators'
 import axios from 'axios'
 
 const checkTube = (value) => value.indexOf('youtube.com') >= 0 || value.indexOf('youtu.be') >= 0
+var ErrorClear
 
 export default {
     name: "vidEntry",
@@ -42,6 +43,12 @@ export default {
             queueSize: 0,
         }
     },
+    watch:{
+        error: function(){
+            clearTimeout(ErrorClear)
+            this.killError()
+        }
+    },
     validations() {
         return{
             vidEntered: {
@@ -52,6 +59,10 @@ export default {
         }
     },
     methods:{
+        killError(){         
+            var self = this;
+            ErrorClear =setTimeout(function(){self.error = "";}, 5000);
+        },
         submitVid(){
             this.vidId = getIdFromURL(this.vidEntered)
             this.vidEntered = ""

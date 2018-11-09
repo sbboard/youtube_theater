@@ -52,6 +52,7 @@ export default {
                     this.initTime = response.data.currentTime
                 }
                 this.DefaultCheck(this.onDefault)
+                console.log("first video: " + this.videoId)
             })
             .catch(error => {
                 console.log(error);
@@ -59,7 +60,6 @@ export default {
     },
     methods: {
         ended(){
-            //start to play next vid
             axios.get(this.$store.state.apiLocation + '/nextVid.php',
             {
                 params:{
@@ -68,11 +68,11 @@ export default {
             })
             .then(response => {
                 //define current video
-                console.log(response.data)
+                console.log("gotten from nextvid.php: " + response.data)
                 if(this.nextVidId != ""){
-                    console.log("1")
-                    console.log(this.nextVidId)
+                    console.log("old Nextvid: " + this.nextVidId)
                     this.videoId = this.nextVidId
+                    console.log("now playing: " + this.videoId)
                     if(this.nextVidId != this.placeHolderVidID){
                         this.onDefault = false
                     }
@@ -81,15 +81,14 @@ export default {
                     }
                 }
                 else{
-                    console.log("2")
                     this.videoId = this.placeHolderVidID
                     this.player.seekTo(0, true)
                     this.onDefault = true
                 }
                 //define next video
                 if(response.data != ""){
-                    console.log("3")
                     this.nextVidId = response.data
+                    console.log("Next video: " + this.nextVidId)
                     this.onDefault = false
                 }
                 this.DefaultCheck(this.onDefault)
@@ -104,15 +103,12 @@ export default {
                 this.firstPunch++
             }
         },
-        beginNextVid(){
-            console.log(this.videoId)
-        },
         DefaultCheck(bool){
             if(bool){
-                console.log(bool)
+                console.log("Default Vid? " + bool)
             }
             else{
-                console.log(bool)
+                console.log("Default Vid? " + bool)
             }
         }
     },

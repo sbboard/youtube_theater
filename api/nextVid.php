@@ -14,7 +14,7 @@ while($rowR = mysqli_fetch_array($deleteRun)){
 }
 
 $currentVid="";
-$result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 0");
+$result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 1");
 while($row = mysqli_fetch_array($result)){
     $currentVid.=$row['vidID'];
 }

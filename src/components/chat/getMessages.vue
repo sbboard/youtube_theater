@@ -5,7 +5,7 @@
         <table>
             <tr v-box-shadow v-for="(value, key) in chatLog.chatlog" :key=key>
                 <td class="nameField">{{chatLog.chatlog[key].username}}</td>
-                <td class="msgField">{{chatLog.chatlog[key].message}}</td>
+                <td class="msgField" v-html="chatLog.chatlog[key].message"></td>
                 <td class="datefield">{{chatLog.chatlog[key].time}}</td>
             </tr>
         </table>

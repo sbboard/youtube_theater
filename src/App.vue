@@ -32,6 +32,11 @@ export default {
     login,
     Room,
     Register
+  },
+  mounted(){
+    if(this.$cookies.isKey('username')){
+      this.$store.state.username = this.$cookies.get('username')
+    }
   }
 }
 </script>

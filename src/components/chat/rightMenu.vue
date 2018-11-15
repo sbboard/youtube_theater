@@ -27,6 +27,7 @@ export default {
     },
     methods: {
         submitLogout(){
+            this.$cookies.remove('username')
             this.$store.state.username=""
             this.loginPass=""
             this.loginName=""

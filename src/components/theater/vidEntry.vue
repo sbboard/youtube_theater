@@ -9,7 +9,7 @@
             </div>
         </div>
         <div v-else>
-            <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>submit</button>
+            <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>Submit</button>
         </div>
         <div v-if="$v.$error && vidEntered.length > 0">
             Must be a youtube video
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { getIdFromURL, getTimeFromURL } from 'vue-youtube-embed'
+import { getIdFromURL } from 'vue-youtube-embed'
 import { required, url, } from 'vuelidate/lib/validators'
 import axios from 'axios'
 
@@ -81,7 +81,6 @@ export default {
                 //checks for an hour mark in return
                 if(this.vidLength.includes("H")){
                     this.error="Video is too long!"
-                    console.log(this.error)
                 }
                 else{
                     let seconds = 0
@@ -107,7 +106,6 @@ export default {
                     } // end for loop
                     if(this.vidLength > this.timeLimit){
                         this.error="Video is too long!"
-                        console.log(this.error)
                     }
                     else{
                         this.enterData(this.vidLength,this.vidName,this.vidCreator)
@@ -116,6 +114,7 @@ export default {
             })
             .catch(error => {
                 console.log(error);
+                this.error = "Not a proper youtube video"
             })
         },
         enterData(vidLength,vidName,vidCreator){

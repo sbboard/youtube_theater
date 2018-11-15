@@ -1,6 +1,6 @@
 <template>
 <v-app id="app">
-    YOUTUBE THEATER WOW
+    <div v-if="this.$store.state.username == ''">YOUTUBE THEATER WOW</div>
     <template v-if="this.$store.state.username != ''">
       <Room id="room"/>
     </template>

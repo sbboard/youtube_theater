@@ -1,5 +1,6 @@
 <template>
     <div>
+        <span @click="vote('up')">UPVOTE</span> {{this.$store.state.vidTitle}} <span @click="vote('down')">DOWNVOTE</span>
         <div v-if="this.$store.state.username!=''">
             <div v-if="this.$store.state.queueSize < queueMax">
                 <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>

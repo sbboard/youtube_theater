@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <login/>
-      Register
+      Regiser
     </template>
 </v-app>
 </template>

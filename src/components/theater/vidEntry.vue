@@ -59,6 +59,14 @@ export default {
         }
     },
     methods:{
+        vote(direction){
+            //turnery operator between up and down to check which column to add a point to
+            //add point to that column
+            //check how many users are online
+            //check how many votes exist
+            //if downvotes > totalUsers/2
+            //Delete video from queue (setup a thing in checkin to check if the video has been deleted)
+        },
         killError(){         
             var self = this;
             ErrorClear =setTimeout(function(){self.error = "";}, 5000);

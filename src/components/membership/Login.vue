@@ -1,7 +1,7 @@
 <template>
     <div>
       Welcome to YouTube Theater. Please login to begin.
-            <form v-on:click.self.prevent>
+            <form @submit.prevent>
             Login:
             <input type="text" id="username" value="peen" v-model="loginName" @blur="$v.loginName.$touch()">
             Password:

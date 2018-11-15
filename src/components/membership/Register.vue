@@ -4,7 +4,7 @@
             <div v-if="errorCheck">
                 {{errorCheck}}
             </div>
-            <form>
+            <form @submit.prevent>
                 <label>Username</label>
                 <input v-model.lazy="username" @blur="$v.username.$touch()" id="usernameReg" type="text"/> <br/>
                 <span v-if="$v.username.checkSame === false && username.length > 0">
@@ -20,7 +20,7 @@
                 <span v-if="$v.passwordCheck.$anyError && passwordCheck.length > 0">
                     passwords don't match
                 </span>
-                <button @click.prevent="submitRegister()" :disabled="$v.$invalid">Register</button>
+                <button @click="submitRegister()" :disabled="$v.$invalid">Register</button>
             </form>
         </div>
         <div id="success" v-else>

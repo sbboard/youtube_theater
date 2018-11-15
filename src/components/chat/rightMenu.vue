@@ -3,7 +3,7 @@
         <!--Playlist
         Chat
         Online Now-->
-        <login/>
+        Hello {{this.$store.state.username}}!
         <router-link to="/">Chat</router-link> . 
         <router-link to="/onlineNow">Online Now</router-link> . 
         <router-link to="/register" v-if="this.$store.state.username==''">Register</router-link>

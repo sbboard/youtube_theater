@@ -1,6 +1,12 @@
 <template>
 <v-app id="app">
-    <Room id="room"/>
+    <template v-if="this.$store.state.username != ''">
+      <Room id="room"/>
+    </template>
+    <template v-else>
+      <login/>
+      Register
+    </template>
 </v-app>
 </template>
 
@@ -8,10 +14,12 @@
 import onlineList from './components/membership/onlineList'
 import Room from './components/Rooms'
 import Register from './components/membership/Register'
+import login from './components/membership/Login'
 
 export default {
   name: 'app',
   components: {
+    login,
     Room
   }
 }

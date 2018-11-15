@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="this.$store.state.username==''">
+      Welcome to YouTube Theater. Please login to begin.
             <form v-on:click.self.prevent>
             Login:
             <input type="text" id="username" value="peen" v-model="loginName" @blur="$v.loginName.$touch()">
@@ -9,10 +9,6 @@
             <button @click="submitLogin()" :disabled="$v.$invalid">Login</button>
             </form>
             {{loginError}}
-        </div>
-        <div v-else>
-            Hello {{this.$store.state.username}}!
-        </div>
     </div>
 </template>
 

@@ -1,11 +1,16 @@
 <template>
 <v-app id="app">
+    YOUTUBE THEATER WOW
     <template v-if="this.$store.state.username != ''">
       <Room id="room"/>
     </template>
-    <template v-else>
+    <template v-else-if="registerClick == false">
       <login/>
-      Regiser
+      <span @click="()=>registerClick=!registerClick">Regiser</span>
+    </template>
+    <template v-else-if="registerClick == true">
+      <register/>
+      <span @click="()=>registerClick=!registerClick">Back to Login</span>
     </template>
 </v-app>
 </template>
@@ -18,9 +23,15 @@ import login from './components/membership/Login'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      registerClick: false
+    }
+  },
   components: {
     login,
-    Room
+    Room,
+    Register
   }
 }
 </script>

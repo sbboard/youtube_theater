@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         sendLogStatus(){
-            axios.get(this.$store.state.apiLocation + '/logMsg.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/logMsg.php',
             {
                 params:{
                     room: this.$store.state.room,

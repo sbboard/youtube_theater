@@ -27,7 +27,7 @@ export default {
                 "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
             }
-            axios.post(this.$store.state.apiLocation + '/postMsg.php',params,headers)
+            axios.post(process.env.VUE_APP_GFAPI + '/postMsg.php',params,headers)
             .catch(error => {
                 console.log(error);
             })

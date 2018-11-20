@@ -31,7 +31,7 @@ export default {
     methods: {
         getChat: function(){           
             setInterval(function(){
-            axios.get(this.$store.state.apiLocation + '/text.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/text.php',
             {
                 params:{
                     room: this.$store.state.room

@@ -128,7 +128,7 @@ export default {
         },
         enterData(vidLength,vidName,vidCreator){
             //put info into database
-            axios.get(this.$store.state.apiLocation + "/getVideoInfo.php",
+            axios.get(process.env.VUE_APP_GFAPI + "/getVideoInfo.php",
             {
                 params:{
                     vidId: this.vidId,
@@ -152,7 +152,7 @@ export default {
         },
         queueCheck: function(){           
             setInterval(function(){
-            axios.get(this.$store.state.apiLocation + '/getQueueSize.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/getQueueSize.php',
             {
                 params:{
                     room: this.$store.state.room

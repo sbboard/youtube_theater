@@ -12,7 +12,7 @@ export default {
     methods: {
         beginCheck: function(){           
             setInterval(function(){
-            axios.get(this.$store.state.apiLocation + '/checkin.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/checkin.php',
             {
                 params:{
                     username: this.$store.state.username,

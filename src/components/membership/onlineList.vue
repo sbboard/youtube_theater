@@ -24,7 +24,7 @@ export default {
     methods: {
         checkOnline: function(){           
             setInterval(function(){
-            axios.get(this.$store.state.apiLocation + '/onlineCheck.php',{
+            axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',{
                 params: {
                     room: this.$store.state.room
                 }   

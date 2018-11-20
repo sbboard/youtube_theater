@@ -55,7 +55,7 @@ export default {
         },
         jumpStart(){
             //get vid Info
-            axios.get(this.$store.state.apiLocation + '/getCurrentVid.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/getCurrentVid.php',
             {
                 params:{
                     room: this.$store.state.room
@@ -80,7 +80,7 @@ export default {
             })
         },
         ended(){
-            axios.get(this.$store.state.apiLocation + '/nextVid.php',
+            axios.get(process.env.VUE_APP_GFAPI + '/nextVid.php',
             {
                 params:{
                     endedVid: this.videoId

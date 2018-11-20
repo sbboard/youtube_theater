@@ -42,7 +42,8 @@ export default {
         },
         killed(){
             if(this.$store.state.killed==true){
-                this.ended()
+                //this.ended()
+                console.log("KILLED")
             }
         }
     },
@@ -70,7 +71,6 @@ export default {
                 if(response.data==""){
                     this.videoId= this.placeHolderVidID
                     this.onDefault = true
-                    console.log("peen")
                 }
                 else{
                     this.videoId = response.data.currentVid

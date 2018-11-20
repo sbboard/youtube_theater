@@ -16,6 +16,7 @@ export const store = new Vuex.Store({
         listGirth: 0,
         queueSize: 0,
         currentTime : 0,
-        vidTitle: "placeholder"
+        vidID: "XqAX-xIFomw",
+        killed: false
     }
 });

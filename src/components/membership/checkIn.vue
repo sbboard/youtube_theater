@@ -16,7 +16,16 @@ export default {
             {
                 params:{
                     username: this.$store.state.username,
-                    currentVidTime: this.$store.state.currentTime
+                    currentVidTime: this.$store.state.currentTime,
+                    currentVid: this.$store.state.vidID
+                }
+            })
+            .then(response => {
+                if(this.$store.state.currentVid != "XqAX-xIFomw"){
+                    this.$store.state.killed = response.data
+                }
+                else{
+                    this.$store.state.killed = false
                 }
             })
             .catch(error => {

@@ -39,6 +39,11 @@ export default {
             else{
                 clearInterval(CheckQueue)
             }
+        },
+        killed(){
+            if(this.$store.state.killed==true){
+                this.ended()
+            }
         }
     },
     created(){
@@ -65,6 +70,7 @@ export default {
                 if(response.data==""){
                     this.videoId= this.placeHolderVidID
                     this.onDefault = true
+                    console.log("peen")
                 }
                 else{
                     this.videoId = response.data.currentVid
@@ -117,6 +123,7 @@ export default {
             })
         },
         playing(){
+            this.$store.state.vidID = this.videoId
             if(this.firstPunch < 1){
                 this.player.seekTo(this.initTime, true)
                 this.firstPunch++
@@ -130,6 +137,9 @@ export default {
     computed: {
         player() {
             return this.$refs.youtube.player
+        },
+        killed() {
+            return this.$store.state.killed
         }
     }
 }

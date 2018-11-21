@@ -43,6 +43,7 @@ export default {
         killed(){
             if(this.$store.state.killed==true){
                 console.log("KILLED")
+                this.jumpStart()
             }
         }
     },

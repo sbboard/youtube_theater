@@ -69,7 +69,7 @@ export default {
                 }
             })
             .then(response => {
-                this.$store.state.voted = true
+                this.$store.state.voted = response.data
             })
             .catch(error => {
             })

@@ -62,14 +62,15 @@ export default {
     },
     methods:{
         vote(direction){
-            axios.get(this.$store.state.youtube,
+            axios.get(process.env.VUE_APP_GFAPI + '/downvote.php',
             {
                 params:{
-                    instructions: this.direction
+                    instructions: direction
                 }
             })
             .then(response => {
                 this.$store.state.voted = response.data
+                console.log(this.$store.state.voted)
             })
             .catch(error => {
             })

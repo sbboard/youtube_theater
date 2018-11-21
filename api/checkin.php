@@ -9,11 +9,12 @@ $currentVid=$_GET['currentVid'];
 $vidExists = false;
 $downVotes = 0;
 $totalBoys = 1;
-
+$placeholder = $_GET['placeholder'];
 if(isset($_GET['currentVidTime'])){
     $currentVidTime=$_GET['currentVidTime'];
 }
 
+//check if host exists
 $searchForHost = mysqli_query($con, "SELECT * FROM $memberTable WHERE host= '1' AND user= '$user'");
 while($rowS = mysqli_fetch_assoc($searchForHost)){
     $isHost = true;
@@ -42,7 +43,7 @@ if($isHost){
     if($downVotes >= $totalBoys/2){
         $deleteRun = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidID = '$currentVid' AND vidNo = 0");
         while($rowR = mysqli_fetch_array($deleteRun)){
-            mysqli_query($con,"DELETE FROM $vidTable WHERE vidID = '$endedVid' AND vidNo = 0");
+            mysqli_query($con,"DELETE FROM $vidTable WHERE vidID = '$currentVid' AND vidNo = 0");
             mysqli_query($con,"UPDATE $vidTable SET vidNo = vidNo - 1");
         }
     }
@@ -56,7 +57,12 @@ if($vidExists == true){
     echo "false";
 }
 else{
-    echo "true";
+    if($currentVid != $placeholder){
+        echo "true";
+    }
+    else{
+        echo "false";
+    }
 }
 //idk something to trigger that the video has been deleted
 //return true

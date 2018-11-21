@@ -42,7 +42,6 @@ export default {
         },
         killed(){
             if(this.$store.state.killed==true){
-                //this.ended()
                 console.log("KILLED")
             }
         }

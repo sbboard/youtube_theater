@@ -1,6 +1,8 @@
 <template>
     <div>
-        <span @click="vote('up')">UPVOTE</span> {{this.$store.state.vidTitle}} <span @click="vote('down')">DOWNVOTE</span>
+        {{this.$store.state.vidTitle}} 
+        <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
+        <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
         <div v-if="this.$store.state.username!=''">
             <div v-if="this.$store.state.queueSize < queueMax">
                 <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
@@ -60,12 +62,17 @@ export default {
     },
     methods:{
         vote(direction){
-            //turnery operator between up and down to check which column to add a point to
-            //add point to that column
-            //check how many users are online
-            //check how many votes exist
-            //if downvotes > totalUsers/2
-            //Delete video from queue (setup a thing in checkin to check if the video has been deleted)
+            axios.get(this.$store.state.youtube,
+            {
+                params:{
+                    instructions: this.direction
+                }
+            })
+            .then(response => {
+                this.$store.state.voted = true
+            })
+            .catch(error => {
+            })
         },
         killError(){         
             var self = this;

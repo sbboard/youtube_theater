@@ -43,6 +43,7 @@ export default {
         killed(){
             if(this.$store.state.killed==true){
                 console.log("KILLED")
+                this.$store.state.voted = false
                 this.jumpStart()
             }
         }
@@ -107,6 +108,7 @@ export default {
                     }
                 }
                 else{
+                    this.$store.state.voted = false
                     this.videoId = this.placeHolderVidID
                     this.player.seekTo(0, true)
                     this.onDefault = true

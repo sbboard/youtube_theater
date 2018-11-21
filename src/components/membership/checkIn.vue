@@ -17,7 +17,8 @@ export default {
                 params:{
                     username: this.$store.state.username,
                     currentVidTime: this.$store.state.currentTime,
-                    currentVid: this.$store.state.vidID
+                    currentVid: this.$store.state.vidID,
+                    placeholder: this.$store.state.placeholder
                 }
             })
             .then(response => {

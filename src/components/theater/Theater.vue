@@ -16,7 +16,7 @@ export default {
             videoId: "",
             initTime: "",
             firstPunch: 0,
-            placeHolderVidID: "XqAX-xIFomw",
+            placeHolderVidID: this.$store.state.placeholder,
             nextVidId: "",
             onDefault: false,
             playerVars: {

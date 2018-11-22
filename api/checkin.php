@@ -9,6 +9,7 @@ $currentVid=$_GET['currentVid'];
 $vidExists = false;
 $downVotes = 0;
 $totalBoys = 1;
+$killedStatus = false;
 $placeholder = $_GET['placeholder'];
 if(isset($_GET['currentVidTime'])){
     $currentVidTime=$_GET['currentVidTime'];
@@ -54,18 +55,18 @@ while($vidExistsQuery = mysqli_fetch_assoc($vidExistsStill)){
     $vidExists = true;
 }
 if($vidExists == true){
-    echo "false";
+    $killedStatus = "false";
 }
 else{
     if($currentVid != $placeholder){
-        echo "true";
+        $killedStatus = "true";
     }
     else{
-        echo "false";
+        $killedStatus = "false";
     }
 }
-//idk something to trigger that the video has been deleted
-//return true
+echo "{\"killed\":\"".$killedStatus."\", \"downvotes\":\"".$downVotes."\"}";
+
 include('checkHost.php');
 mysqli_close($con);
 ?>

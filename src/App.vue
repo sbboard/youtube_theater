@@ -9,7 +9,7 @@
     <!-- display log in/register options -->
     <template v-else-if="currentMenu == 'cookie'">
       Use YouTube Theater as {{this.$cookies.get('username')}}?
-      <span @click="logged">yes</span>   ...   <span @click="logout">no</span>
+      <span @click="checkOnline">yes</span>   ...   <span @click="logout">no</span>
     </template>
 
     <!-- display log in/register options -->
@@ -53,7 +53,6 @@ export default {
   methods:{
     logged(){
       if(this.$cookies.isKey('username')){
-        this.$store.state.username = this.$cookies.get('username')
         const params = new URLSearchParams();
         params.append('username', "");
         params.append('room', this.$store.state.room);
@@ -72,7 +71,34 @@ export default {
     logout(){
         this.$cookies.remove('username')
         this.currentMenu='login'
-    }
+    },
+    checkOnline(){
+        axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',{
+        params: {
+            room: this.$store.state.room
+        }})
+        .then(response => {
+          var badBoy = false
+          var i
+          for(i=0;i<response.data.online.length;i++){
+          console.log(response.data.online[i])
+            if(response.data.online[i].username == this.$cookies.get('username')){
+              badBoy = true;
+              console.log("BAD")
+            }
+          }
+          if(badBoy == true){
+            console.log(this.$cookies.get('username'))
+            console.log('already logged in');
+          }
+          else{
+            this.$store.state.username = this.$cookies.get('username')
+            this.logged()
+          }
+        })
+        .catch(error => {
+            console.log(error);
+        })}
   }
 }
 </script>

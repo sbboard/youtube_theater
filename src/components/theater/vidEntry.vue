@@ -1,8 +1,10 @@
 <template>
     <div>
+        <template v-if="this.$store.state.vidID != this.$store.state.placeholder">
         {{this.$store.state.currentVid}} 
         <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
         <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
+        </template>
         <div v-if="this.$store.state.username!=''">
             <div v-if="this.$store.state.queueSize < queueMax">
                 <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>

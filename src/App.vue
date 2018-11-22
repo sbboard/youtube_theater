@@ -81,14 +81,11 @@ export default {
           var badBoy = false
           var i
           for(i=0;i<response.data.online.length;i++){
-          console.log(response.data.online[i])
             if(response.data.online[i].username == this.$cookies.get('username')){
               badBoy = true;
-              console.log("BAD")
             }
           }
           if(badBoy == true){
-            console.log(this.$cookies.get('username'))
             console.log('already logged in');
           }
           else{

@@ -1,16 +1,27 @@
 <template>
 <v-app id="app">
     <div v-if="this.$store.state.username == ''">YOUTUBE THEATER WOW</div>
+    <!-- display room if logged in -->
     <template v-if="this.$store.state.username != ''">
       <Room id="room"/>
     </template>
-    <template v-else-if="registerClick == false">
-      <login/>
-      <span @click="()=>registerClick=!registerClick">Regiser</span>
+
+    <!-- display log in/register options -->
+    <template v-else-if="currentMenu == 'cookie'">
+      Use YouTube Theater as {{this.$cookies.get('username')}}?
+      <span @click="logged">yes</span>   ...   <span @click="logout">no</span>
     </template>
-    <template v-else-if="registerClick == true">
+
+    <!-- display log in/register options -->
+    <template v-else-if="currentMenu == 'login'">
+      <login/>
+      <span @click="()=>currentMenu='register'">Register</span>
+    </template>
+    
+    <!-- login page -->
+    <template v-else-if="currentMenu == 'register'">
       <register/>
-      <span @click="()=>registerClick=!registerClick">Back to Login</span>
+      <span @click="()=>currentMenu='login'">Back to Login</span>
     </template>
 </v-app>
 </template>
@@ -26,7 +37,7 @@ export default {
   name: 'app',
   data(){
     return{
-      registerClick: false
+      currentMenu: "login"
     }
   },
   components: {
@@ -35,21 +46,32 @@ export default {
     Register
   },
   mounted(){
-    if(this.$cookies.isKey('username')){
-      this.$store.state.username = this.$cookies.get('username')
-      const params = new URLSearchParams();
-      params.append('username', "");
-      params.append('room', this.$store.state.room);
-      params.append('msg', this.$cookies.get('username')+" has entered the room");
-      var headers = {
-        "Access-Control-Allow-Origin" : "*",
-        "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+      if(this.$cookies.isKey('username')){
+        this.currentMenu='cookie'
       }
-      axios.post(process.env.VUE_APP_GFAPI + '/postMsg.php',params,headers)
-      .catch(error => {
-        console.log(error);
-      })
+  },
+  methods:{
+    logged(){
+      if(this.$cookies.isKey('username')){
+        this.$store.state.username = this.$cookies.get('username')
+        const params = new URLSearchParams();
+        params.append('username', "");
+        params.append('room', this.$store.state.room);
+        params.append('msg', this.$cookies.get('username')+" has entered the room");
+        var headers = {
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+        }
+        axios.post(process.env.VUE_APP_GFAPI + '/postMsg.php',params,headers)
+        .catch(error => {
+          console.log(error);
+        })
+      }
+    },
+    logout(){
+        this.$cookies.remove('username')
+        this.currentMenu='login'
     }
   }
 }

@@ -19,6 +19,7 @@ export const store = new Vuex.Store({
         vidID: "XqAX-xIFomw",
         killed: false,
         placeholder: "XqAX-xIFomw",
-        voted: false
+        voted: false,
+        currentVid: ""
     }
 });

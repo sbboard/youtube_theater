@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{this.$store.state.vidTitle}} 
+        {{this.$store.state.currentVid}} 
         <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
         <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
         <div v-if="this.$store.state.username!=''">

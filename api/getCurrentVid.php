@@ -9,7 +9,8 @@ $nextVidFound = false;
 $result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 0");
 while($row = mysqli_fetch_array($result)){
         $currentVid.="{\"currentVid\": \"".$row['vidID']."\", ";
-        $currentVid.="\"currentTime\": \"".$row['currentTime']."\"";
+        $currentVid.="\"currentTime\": \"".$row['currentTime']."\", ";
+        $currentVid.="\"currentName\": \"".$row['vidTitle']."\"";
 }
 $result = mysqli_query($con,"SELECT * FROM $vidTable WHERE vidNo = 1");
 while($row = mysqli_fetch_array($result)){

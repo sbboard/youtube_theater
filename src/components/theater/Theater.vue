@@ -74,7 +74,9 @@ export default {
                     this.onDefault = true
                 }
                 else{
+                    console.log(response.data)
                     this.videoId = response.data.currentVid
+                    this.$store.state.currentVid = response.data.currentName
                     this.onDefault = false
                     if(response.data.nextVid){
                         this.nextVidId = response.data.nextVid

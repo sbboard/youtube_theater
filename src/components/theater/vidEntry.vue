@@ -4,6 +4,7 @@
         {{this.$store.state.currentVid}} 
         <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
         <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
+        {{this.$store.state.totalDownvotes}} / {{Math.ceil(this.$store.state.totalUsers/2)}}
         </template>
         <div v-if="this.$store.state.username!=''">
             <div v-if="this.$store.state.queueSize < queueMax">

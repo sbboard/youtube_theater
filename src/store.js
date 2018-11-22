@@ -20,6 +20,8 @@ export const store = new Vuex.Store({
         killed: false,
         placeholder: "XqAX-xIFomw",
         voted: false,
-        currentVid: ""
+        currentVid: "",
+        totalUsers: 0,
+        totalDownvotes: 0
     }
 });

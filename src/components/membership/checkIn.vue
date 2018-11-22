@@ -32,6 +32,21 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+
+            
+            axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',
+            {
+                params:{
+                    room: this.$store.state.room
+                }
+            })
+            .then(response => {
+                this.$store.state.totalUsers = response.data.online.length
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
             }.bind(this), 500);
         }
     }

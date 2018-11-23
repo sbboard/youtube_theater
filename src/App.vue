@@ -9,7 +9,13 @@
     <!-- display log in/register options -->
     <template v-else-if="currentMenu == 'cookie'">
       Use YouTube Theater as {{this.$cookies.get('username')}}?
+      <template v-if="alreadyLogged == false">
       <span @click="checkOnline">yes</span>   ...   <span @click="logout">no</span>
+      </template>
+      <template v-else>
+        {{this.$cookies.get('username')}} is already logged in.
+      <span @click="checkOnline">retry</span>   ...   <span @click="logout">use another account</span>
+      </template>
     </template>
 
     <!-- display log in/register options -->
@@ -37,7 +43,8 @@ export default {
   name: 'app',
   data(){
     return{
-      currentMenu: "login"
+      currentMenu: "login",
+      alreadyLogged: false
     }
   },
   components: {
@@ -86,7 +93,7 @@ export default {
             }
           }
           if(badBoy == true){
-            console.log('already logged in');
+            this.alreadyLogged = true
           }
           else{
             this.$store.state.username = this.$cookies.get('username')

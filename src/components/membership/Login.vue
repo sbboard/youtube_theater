@@ -1,6 +1,6 @@
 <template>
     <div>
-      Welcome to YouTube Theater. Please login to begin.
+        Login:
             <form @submit.prevent>
             Login:
             <input type="text" id="username" value="peen" v-model="loginName" @blur="$v.loginName.$touch()">
@@ -48,7 +48,7 @@ export default {
             }
           }
           if(badBoy == true){
-            console.log('already logged in');
+              this.loginError = this.loginName+ " is already logged in."
           }
           else{
             this.submitLogin()

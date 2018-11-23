@@ -11,6 +11,4 @@ while($row = mysqli_fetch_array($statCheck)){
         }
 }
 
-//delete extra entries
-//require_once('delete.php');
 ?>

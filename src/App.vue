@@ -56,6 +56,7 @@ export default {
       if(this.$cookies.isKey('username')){
         this.currentMenu='cookie'
       }
+      this.autologout()
   },
   methods:{
     logged(){
@@ -102,7 +103,19 @@ export default {
         })
         .catch(error => {
             console.log(error);
-        })}
+        })
+      },
+      autologout(){
+            setInterval(function(){
+              
+            if(this.$store.state.username == ""){
+            axios.get(process.env.VUE_APP_GFAPI + '/autologout.php')
+            .catch(error => {
+                console.log(error);
+            })
+            }
+            }.bind(this), 2500);
+      }
   }
 }
 </script>

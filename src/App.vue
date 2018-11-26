@@ -114,7 +114,7 @@ export default {
                 console.log(error);
             })
             }
-            }.bind(this), 2500);
+            }.bind(this), 2500)
       }
   }
 }

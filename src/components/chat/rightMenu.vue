@@ -1,16 +1,11 @@
 <template>
-    <div>
-        <!--Playlist
-        Chat
-        Online Now-->
+    <div class="text-md-center">
         Hello {{this.$store.state.username}}!
-        <router-link to="/">Chat</router-link> . 
-        <router-link to="/onlineNow">Online Now</router-link> . 
-        <router-link to="/register" v-if="this.$store.state.username==''">Register</router-link>
-        <div v-if="this.$store.state.username!=''">
-            <button @click.prevent="submitLogout()">Logout</button>
-        </div>
-        <!--<router-link to="/login">Login</router-link>-->
+        <v-btn to="/">Chat</v-btn>
+        <v-btn to="/onlineNow">Online Now</v-btn>
+        <template v-if="this.$store.state.username!=''">
+            <v-btn d-inline-block @click.prevent="submitLogout()">Logout</v-btn>
+        </template>
         <checkin v-if="this.$store.state.username!=''"/>
     </div>
 </template>
@@ -37,5 +32,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
 </style>

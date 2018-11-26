@@ -1,14 +1,23 @@
 <template>
     <div>
-        Login:
             <form @submit.prevent>
-            Login:
-            <input type="text" id="username" value="peen" v-model="loginName" @blur="$v.loginName.$touch()">
-            Password:
-            <input type='password' v-model='loginPass' @blur="$v.loginPass.$touch()">
-            <button @click="checkOnline()" :disabled="$v.$invalid">Login</button>
+                <v-text-field
+                label="Login"
+                id="username"
+                v-model="loginName"
+                @blur="$v.loginName.$touch()"></v-text-field>
+                <v-text-field
+                label="Password"
+                type='password' 
+                v-model='loginPass' 
+                @blur="$v.loginPass.$touch()"></v-text-field>
+                <v-btn @click="checkOnline()" :disabled="$v.$invalid">Login</v-btn>
             </form>
-            {{loginError}}
+            <v-alert
+                :value="loginError"
+                type="warning">
+                {{loginError}}
+            </v-alert>
     </div>
 </template>
 

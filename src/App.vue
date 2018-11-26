@@ -7,16 +7,31 @@
     </template>
 
     <!-- display log in/register options -->
-    <template v-else-if="currentMenu == 'cookie'">
+    <v-card v-else-if="currentMenu == 'cookie'">
+      <v-container
+        fluid
+        grid-list-lg
+      >
+      <v-layout row wrap>
+      <v-flex xs12>
       Use YouTube Theater as {{this.$cookies.get('username')}}?
-      <template v-if="alreadyLogged == false">
-      <span @click="checkOnline">yes</span>   ...   <span @click="logout">no</span>
-      </template>
-      <template v-else>
+      </v-flex>
+      <v-flex v-if="alreadyLogged == false">
+        
+      <v-btn @click="checkOnline">yes</v-btn><v-btn @click="logout">no</v-btn>
+      </v-flex>
+      <v-flex v-else xs12>
+        <v-alert
+      :value="true"
+      type="warning"
+    >
         {{this.$cookies.get('username')}} is already logged in.
-      <span @click="checkOnline">retry</span>   ...   <span @click="logout">use another account</span>
-      </template>
-    </template>
+        </v-alert>
+      <v-btn @click="checkOnline">retry</v-btn><v-btn @click="logout">use another account</v-btn>
+      </v-flex>
+      </v-layout>
+      </v-container>
+    </v-card>
 
     <!-- display log in/register options -->
     <template v-else-if="currentMenu == 'login'">
@@ -26,7 +41,7 @@
     <!-- login page -->
     <template v-else-if="currentMenu == 'register'">
       <register/>
-      <span @click="()=>currentMenu='login'">Back to Login</span>
+      <v-btn @click="()=>currentMenu='login'">Back to Login</v-btn>
     </template>
 </v-app>
 </template>

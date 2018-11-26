@@ -1,5 +1,5 @@
 <template>
-    <div class="text-md-center">
+    <div id="menuBoy" class="text-md-center">
         Hello {{this.$store.state.username}}!
         <v-btn to="/">Chat</v-btn>
         <v-btn to="/onlineNow">Online Now</v-btn>

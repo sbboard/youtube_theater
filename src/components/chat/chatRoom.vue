@@ -1,6 +1,6 @@
 <template>
     <div>
-        <getMessages id="chatRoom"/>
+        <getMessages :style="{height:calcHeight}" id="chatRoom"/>
         <div id="loginMsg">
             <sendMessages v-if="this.$store.state.username!=''"/>
             <div v-else>
@@ -19,7 +19,26 @@ export default {
   components: {
     getMessages,
     sendMessages
-  }
+  },
+  data(){
+      return{
+        calcHeight: 0
+      }
+  },
+    mounted () {
+        this.matchHeight()
+    },
+    methods: {
+        matchHeight () {
+            let msgHeight = document.getElementById('rightMenu').clientHeight
+            let menuHeight = document.getElementById('loginMsg').clientHeight
+            let windowHeight = window.innerHeight
+            console.log(msgHeight + " " + menuHeight + " " + windowHeight)
+            this.calcHeight = windowHeight - menuHeight - msgHeight
+            this.calcHeight = this.calcHeight + "px"
+            console.log(this.calcHeight)
+        }
+    }
 }
 </script>
 
@@ -27,11 +46,8 @@ export default {
 #rightMenu
     padding: 1em 0
 #chatRoom
-  background-color: red
-  height: calc(100vh - 7em)
   overflow-y: scroll
 #footer
-    background-color: blue
     width: 100%
     padding: 1em 0
     position: absolute
@@ -46,7 +62,6 @@ export default {
   padding-top: 1em
   padding-bottom: 1em
   text-align: center
-  background-color: green
   position: absolute
   bottom: 0
   width: 100%

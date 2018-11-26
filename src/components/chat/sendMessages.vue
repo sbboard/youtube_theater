@@ -1,8 +1,20 @@
 <template>
+<v-layout row wrap class="ml-auto">
+        <v-flex xs12>
     <form onsubmit="return false;">
-        <input v-model="msg"/>
-        <button @click="sendMsg" :disabled="msg.length<1">Send</button>
+        <v-layout row wrap>
+        <v-flex xs10>
+            <v-text-field 
+            label="Message"
+            v-model="msg"/>
+        </v-flex>
+        <v-flex xs2>
+            <v-btn @click="sendMsg" :disabled="msg.length<1">Send</v-btn>
+        </v-flex>
+        </v-layout>
     </form>
+        </v-flex>
+</v-layout>
 </template>
 
 <script>

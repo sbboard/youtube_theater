@@ -20,8 +20,7 @@
 
     <!-- display log in/register options -->
     <template v-else-if="currentMenu == 'login'">
-      <login/>
-      <span @click="()=>currentMenu='register'">Register</span>
+      <login/><v-btn @click="()=>currentMenu='register'">Register</v-btn>
     </template>
     
     <!-- login page -->

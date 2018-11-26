@@ -1,31 +1,44 @@
 <template>
     <div>
         <div id="register" v-if="success==false">
-            <div v-if="errorCheck">
-                {{errorCheck}}
-            </div>
             <form @submit.prevent>
-                <label>Username</label>
-                <input v-model.lazy="username" @blur="$v.username.$touch()" id="usernameReg" type="text"/> <br/>
-                <span v-if="$v.username.checkSame === false && username.length > 0">
+                <v-text-field 
+                label="Username"
+                v-model.lazy="username" 
+                @blur="$v.username.$touch()" 
+                id="usernameReg"/>
+                <v-alert 
+                v-if="$v.username.checkSame === false && username.length > 0"
+                :value="true"
+                type="warning">
                     Username already taken
-                </span>
-                <label>Password</label>
-                <input v-model.lazy="password" @blur="$v.password.$touch()" type="password"/><br/>
-                <span v-if="$v.password.$anyError && password.length > 0">
+                </v-alert>
+                <v-text-field 
+                label="Password"
+                v-model.lazy="password" 
+                @blur="$v.password.$touch()" 
+                type="password"/>
+                <v-alert 
+                :value="true"
+                v-if="$v.password.$anyError && password.length > 0"
+                type="warning">
                     password must be at least 6 characters
-                </span>
-                <label>Confirm Password</label>
-                <input v-model="passwordCheck" type="password" @input="$v.passwordCheck.$touch()"/><br/>
-                <span v-if="$v.passwordCheck.$anyError && passwordCheck.length > 0">
+                </v-alert>
+                <v-text-field 
+                label="Confirm Password"
+                v-model="passwordCheck" type="password" @input="$v.passwordCheck.$touch()"/><br/>
+                <v-alert 
+                v-if="$v.passwordCheck.$anyError && passwordCheck.length > 0"
+                :value="true"
+                type="warning">
                     passwords don't match
-                </span>
-                <button @click="submitRegister()" :disabled="$v.$invalid">Register</button>
+                </v-alert>
+                <v-btn @click="submitRegister()" :disabled="$v.$invalid">Register</v-btn>
             </form>
         </div>
-        <div id="success" v-else>
-            You are now registered!
-        </div>
+        <v-alert :value="errorCheck" type="warning">
+            {{errorCheck}}
+        </v-alert>
     </div>
 </template>
 

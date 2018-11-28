@@ -1,7 +1,7 @@
 <template>
 <v-layout row>
     <v-flex xs8 class="largeFlex">
-        <Theater id="theater"/>
+        <Theater :style="{height:calcHeight}" id="theater"/>
         <ProjFooter id="footer"/>
     </v-flex>
     <v-flex xs4 class="largeFlex">
@@ -29,7 +29,8 @@ export default {
     data(){
         return{
             oldName:"",
-            newName:""
+            newName:"",
+            calcHeight: 0
         }
     },
     created(){
@@ -42,6 +43,9 @@ export default {
             this.newName=newValue;
             this.sendLogStatus();
         })
+    },
+    mounted(){
+        this.matchHeight()
     },
     methods: {
         sendLogStatus(){
@@ -56,6 +60,12 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+        },
+        matchHeight () {
+            let footerHeight = document.getElementById('footer').clientHeight
+            let windowHeight = window.innerHeight
+            this.calcHeight = windowHeight - footerHeight
+            this.calcHeight = this.calcHeight + "px"
         }
     }
 }

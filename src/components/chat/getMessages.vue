@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div style="background-color:#212121" class="mx-2 pb-2">
         <p class="bladerunner">All those moments will be lost in time, like tears in rain.</p>
-        <span v-if="firstTime < 1">Loading...</span>
+        <div v-if="firstTime < 1" class="text-xs-center w-100">Loading...</div>
         <table>
             <tr v-box-shadow v-for="(value, key) in chatLog.chatlog" :key=key>
-                <td class="nameField">{{chatLog.chatlog[key].username}}</td>
+                <td class="nameField text-xs-center">{{chatLog.chatlog[key].username}}</td>
                 <td class="msgField" :class="{compMsg:!chatLog.chatlog[key].username}" v-html="chatLog.chatlog[key].message"></td>
-                <td class="datefield">{{chatLog.chatlog[key].time}}</td>
+                <td class="datefield text-xs-center">{{chatLog.chatlog[key].time}}</td>
             </tr>
         </table>
     </div>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mx-4">
         <h3>Online:</h3>
         <table>
             <tr v-for="(value, key) in onlineList.online" :key=key>

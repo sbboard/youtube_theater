@@ -1,47 +1,56 @@
 <template>
 <v-app dark id="app">
-    <div v-if="this.$store.state.username == ''">YOUTUBE THEATER WOW</div>
+    <!-- logo -->
+    <div class="text-xs-center mt-2" id="logoGuy" v-if="this.$store.state.username == ''">YouTube Theater</div>
     <!-- display room if logged in -->
     <template v-if="this.$store.state.username != ''">
       <Room id="room"/>
     </template>
-
-    <!-- display log in/register options -->
-    <v-card v-else-if="currentMenu == 'cookie'">
-      <v-container
-        fluid
-        grid-list-lg
+  
+    <!--ELSE-->
+    <template v-else>
+      <v-layout row class="mt-4">
+        <v-flex xs4></v-flex>
+      <!-- display log in/register options -->
+      <v-flex xs4>
+      <v-card v-if="currentMenu == 'cookie'">
+        <v-container
+          fluid
+          grid-list-lg
+        >
+        <v-layout row wrap>
+        <v-flex xs12 class="text-xs-center">
+        Use YouTube Theater as {{this.$cookies.get('username')}}?
+        </v-flex>
+        <v-flex v-if="alreadyLogged == false" class="mx-auto text-xs-center">
+          <v-btn @click="checkOnline">yes</v-btn><v-btn @click="logout">no</v-btn>
+        </v-flex>
+        <v-flex v-else xs12 class="text-xs-center">
+          <v-alert
+        :value="true"
+        type="warning"
       >
-      <v-layout row wrap>
-      <v-flex xs12>
-      Use YouTube Theater as {{this.$cookies.get('username')}}?
-      </v-flex>
-      <v-flex v-if="alreadyLogged == false">
-        
-      <v-btn @click="checkOnline">yes</v-btn><v-btn @click="logout">no</v-btn>
-      </v-flex>
-      <v-flex v-else xs12>
-        <v-alert
-      :value="true"
-      type="warning"
-    >
-        {{this.$cookies.get('username')}} is already logged in.
-        </v-alert>
-      <v-btn @click="checkOnline">retry</v-btn><v-btn @click="logout">use another account</v-btn>
-      </v-flex>
-      </v-layout>
-      </v-container>
-    </v-card>
+          {{this.$cookies.get('username')}} is already logged in.
+          </v-alert>
+        <v-btn @click="checkOnline">retry</v-btn><v-btn @click="logout">use another account</v-btn>
+        </v-flex>
+        </v-layout>
+        </v-container>
+      </v-card>
 
-    <!-- display log in/register options -->
-    <template v-else-if="currentMenu == 'login'">
-      <login/><v-btn @click="()=>currentMenu='register'">Register</v-btn>
-    </template>
-    
-    <!-- login page -->
-    <template v-else-if="currentMenu == 'register'">
-      <register/>
-      <v-btn @click="()=>currentMenu='login'">Back to Login</v-btn>
+      <!-- display log in/register options -->
+      <template v-else-if="currentMenu == 'login'">
+        <login/><v-btn @click="()=>currentMenu='register'">Register</v-btn>
+      </template>
+      
+      <!-- login page -->
+      <template v-else-if="currentMenu == 'register'">
+        <register/>
+        <v-btn @click="()=>currentMenu='login'">Back to Login</v-btn>
+      </template>
+      </v-flex>
+        <v-flex xs4></v-flex>
+      </v-layout>
     </template>
 </v-app>
 </template>
@@ -135,6 +144,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import url('https://fonts.googleapis.com/css?family=Montserrat')
 #room
   height: 100vh
+#logoGuy
+  font-family: 'Montserrat', sans-serif
+  font-size: 3em
+  font-weight: 800
 </style>

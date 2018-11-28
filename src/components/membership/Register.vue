@@ -5,11 +5,10 @@
                 <v-text-field 
                 label="Username"
                 v-model.lazy="username" 
-                @blur="$v.username.$touch()" 
+                @blur="$v.username.$touch"
                 id="usernameReg"/>
-                <v-alert 
-                v-if="$v.username.checkSame === false && username.length > 0"
-                :value="true"
+                <v-alert
+                :value="!$v.username.checkSame"
                 type="warning">
                     Username already taken
                 </v-alert>
@@ -66,7 +65,6 @@ export default {
             username: {
                 required,
                 checkSame: val => {
-                    if(val.length === 0) return false
                     return axios.get(process.env.VUE_APP_GFAPI + '/checkUsernameDupe.php',
                     {
                     params:{

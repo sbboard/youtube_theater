@@ -40,13 +40,27 @@
 
       <!-- display log in/register options -->
       <template v-else-if="currentMenu == 'login'">
-        <login/><v-btn @click="()=>currentMenu='register'">Register</v-btn>
+        <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+        <login/>
+        </v-container>
+        </v-card><v-btn @click="()=>currentMenu='register'" id="regButt">Register</v-btn>
       </template>
       
       <!-- login page -->
       <template v-else-if="currentMenu == 'register'">
+        <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
         <register/>
-        <v-btn @click="()=>currentMenu='login'">Back to Login</v-btn>
+        </v-container>
+        </v-card>
+        <v-btn @click="()=>currentMenu='login'" id="regButt">Back to Login</v-btn>
       </template>
       </v-flex>
         <v-flex xs4></v-flex>
@@ -151,4 +165,7 @@ export default {
   font-family: 'Montserrat', sans-serif
   font-size: 3em
   font-weight: 800
+#regButt
+  width: 100%
+  margin-left: 0
 </style>

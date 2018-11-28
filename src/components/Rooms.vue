@@ -65,11 +65,9 @@ export default {
 #rightMenu
     padding: 1em 0
 #chatRoom
-  background-color: red
   height: calc(100% - 7em)
   overflow-y: scroll
 #footer
-    background-color: blue
     width: 100%
     padding: 1em 0
     position: absolute
@@ -84,7 +82,6 @@ export default {
   padding-top: 1em
   padding-bottom: 1em
   text-align: center
-  background-color: green
   position: absolute
   bottom: 0
   width: 100%

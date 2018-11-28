@@ -1,5 +1,5 @@
 <template>
-<v-app id="app">
+<v-app dark id="app">
     <div v-if="this.$store.state.username == ''">YOUTUBE THEATER WOW</div>
     <!-- display room if logged in -->
     <template v-if="this.$store.state.username != ''">

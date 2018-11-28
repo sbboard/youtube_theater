@@ -1,25 +1,41 @@
 <template>
-    <div>
+    <div class="mx-4">
         <template v-if="this.$store.state.vidID != this.$store.state.placeholder">
-        {{this.$store.state.currentVid}} 
-        <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
-        <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
-        {{this.$store.state.totalDownvotes}} / {{Math.ceil(this.$store.state.totalUsers/2)}}
+            {{this.$store.state.currentVid}} 
+            <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
+            <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
+            {{this.$store.state.totalDownvotes}} / {{Math.ceil(this.$store.state.totalUsers/2)}}
         </template>
-        <div v-if="this.$store.state.username!=''">
-            <div v-if="this.$store.state.queueSize < queueMax">
-                <input type="text" v-model="vidEntered" @blur="$v.vidEntered.$touch()" /><button @click="submitVid()" :disabled="$v.$invalid">submit</button>
-            </div>
-            <div v-else>
-                <input type="text" placeholder="queue is full" disabled/><button disabled>submit</button>
-            </div>
-        </div>
-        <div v-else>
-            <input type="text" placeholder="login or register to submit a video" disabled/><button disabled>Submit</button>
-        </div>
-        <div v-if="$v.$error && vidEntered.length > 0">
+        <v-layout row wrap v-if="this.$store.state.username!=''">
+            <v-flex xs12>
+                <v-layout row wrap>
+                    <template v-if="this.$store.state.queueSize < queueMax">
+                        <v-flex xs10>
+                            <v-text-field type="text" 
+                            label="YouTube Video"
+                            v-model="vidEntered" @blur="$v.vidEntered.$touch()" />
+                        </v-flex>
+                        <v-flex xs2 class="text-xs-center">
+                            <v-btn
+                            @click="submitVid()" :disabled="$v.$invalid">submit</v-btn>
+                        </v-flex>
+                    </template>
+                    <template v-else>
+                    <v-flex xs10>
+                        <v-text-field type="text" label="Queue is Full" disabled/>
+                    </v-flex>
+                    <v-flex xs2>
+                        <v-btn
+                            class="mx-auto"
+                            disabled>submit</v-btn>
+                    </v-flex>
+                    </template>
+                </v-layout>
+            </v-flex>
+        </v-layout>
+        <v-alert :value="true" type="warning" v-if="$v.$error && vidEntered.length > 0">
             Must be a youtube video
-        </div>
+        </v-alert>
         Current Vid Limit: {{timeLimit/60}} minutes. {{error}}<br/>
         Video Queue: {{this.$store.state.queueSize}}/{{queueMax}} <span v-if="this.$store.state.queueSize == queueMax">(full)</span>
     </div>

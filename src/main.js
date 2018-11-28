@@ -17,14 +17,13 @@ Vue.use(VueYouTubeEmbed)
 Vue.use(Vuetify, {
   theme: {
     primary: colors.yellow, // #E53935
-    secondary: colors.blue, // #FFCDD2
     accent: colors.yellow // #3F51B5
   }
 })
 
-Vue.directive('box-shadow', {
+Vue.directive('bottom-line', {
   bind(el,binding,vnode){
-    //el.style.boxShadow = "0px 3px 5px #666"
+    el.style.borderTop = "2px solid #3B3B3B"
   }
 })
 

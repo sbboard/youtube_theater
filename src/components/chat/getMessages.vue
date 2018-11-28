@@ -3,7 +3,7 @@
         <p class="bladerunner">All those moments will be lost in time, like tears in rain.</p>
         <div v-if="firstTime < 1" class="text-xs-center w-100">Loading...</div>
         <table>
-            <tr v-box-shadow v-for="(value, key) in chatLog.chatlog" :key=key>
+            <tr v-bottom-line v-for="(value, key) in chatLog.chatlog" :key=key>
                 <td class="nameField text-xs-center">{{chatLog.chatlog[key].username}}</td>
                 <td class="msgField" :class="{compMsg:!chatLog.chatlog[key].username}" v-html="chatLog.chatlog[key].message"></td>
                 <td class="datefield text-xs-center">{{chatLog.chatlog[key].time}}</td>
@@ -61,6 +61,7 @@ div
         padding-top: 1em
     table
         width: 100%
+        border-collapse: collapse
         .nameField
             font-weight: 800
         .msgField

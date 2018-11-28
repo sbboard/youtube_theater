@@ -12,7 +12,7 @@
                     <template v-if="this.$store.state.queueSize < queueMax">
                         <v-flex xs10>
                             <v-text-field type="text" 
-                            label="YouTube Video"
+                            label="Submit a YouTube Video"
                             v-model="vidEntered" @blur="$v.vidEntered.$touch()" />
                         </v-flex>
                         <v-flex xs2 class="text-xs-center">

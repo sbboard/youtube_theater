@@ -22,21 +22,41 @@ export default {
   },
   data(){
       return{
-        calcHeight: 0
+        calcHeight: 0,
+        msgHeight: 0,
+        menuHeight: 0,
+        windowHeight: 0,
+        windowWidth: 0
+      }
+  },
+  created(){
+            this.windowHeight = window.innerHeight
+  },
+  watch: {
+      windowHeight(){
+          this.matchHeight()
+      },
+      windowWidth(){
+          this.matchHeight()
       }
   },
     mounted () {
+        this.msgHeight = document.getElementById('rightMenu').clientHeight
+        this.menuHeight = document.getElementById('loginMsg').clientHeight
+        this.$nextTick(() => {
+            window.addEventListener('resize', () => {
+            this.windowHeight = window.innerHeight
+            this.windowWidth = window.innerWidth
+            this.msgHeight = document.getElementById('rightMenu').clientHeight
+            this.menuHeight = document.getElementById('loginMsg').clientHeight
+            this.windowHeight = window.innerHeight
+        })})
         this.matchHeight()
     },
     methods: {
         matchHeight () {
-            let msgHeight = document.getElementById('rightMenu').clientHeight
-            let menuHeight = document.getElementById('loginMsg').clientHeight
-            let windowHeight = window.innerHeight
-            console.log(msgHeight + " " + menuHeight + " " + windowHeight)
-            this.calcHeight = windowHeight - menuHeight - msgHeight
+            this.calcHeight = this.windowHeight - this.menuHeight - this.msgHeight
             this.calcHeight = this.calcHeight + "px"
-            console.log(this.calcHeight)
         }
     }
 }

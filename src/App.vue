@@ -29,8 +29,7 @@
           <v-alert
         :value="true"
         type="warning"
-        class="text-xs-left"
-      >
+        class="text-xs-left">
           {{this.$cookies.get('username')}} is already logged in.
           </v-alert>
         <v-btn @click="checkOnline">retry</v-btn><v-btn @click="logout">use another account</v-btn>

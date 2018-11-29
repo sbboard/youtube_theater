@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="register" v-if="success==false">
-            <form @submit.prevent>
+            <form @submit="submitRegister()">
                 <v-text-field 
                 label="Username"
                 v-model.lazy="username" 
@@ -32,7 +32,7 @@
                 type="warning">
                     passwords don't match
                 </v-alert>
-                <v-btn @click="submitRegister()" :disabled="$v.$invalid">Register</v-btn>
+                <v-btn type="submit" :disabled="$v.$invalid">Register</v-btn>
             </form>
         </div>
         <v-alert :value="errorCheck" type="warning">

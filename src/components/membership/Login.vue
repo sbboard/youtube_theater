@@ -1,6 +1,6 @@
 <template>
     <div>
-            <form @submit.prevent>
+            <form @submit="checkOnline">
                 <v-text-field
                 label="Login"
                 id="username"
@@ -11,7 +11,7 @@
                 type='password' 
                 v-model='loginPass' 
                 @blur="$v.loginPass.$touch()"></v-text-field>
-                <v-btn @click="checkOnline()" :disabled="$v.$invalid">Login</v-btn>
+                <v-btn type="submit" :disabled="$v.$invalid">Login</v-btn>
             </form>
             <v-alert
                 :value="loginError"
@@ -77,7 +77,6 @@ export default {
             }
             axios.post(process.env.VUE_APP_GFAPI + '/login.php',params,headers)
             .then(response => {
-                console.log(response.data);
                 if(response.data==""){
                     this.$store.state.username=this.loginName
                     this.$cookies.set('username',this.$store.state.username);

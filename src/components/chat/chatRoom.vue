@@ -45,11 +45,11 @@ export default {
         this.menuHeight = document.getElementById('loginMsg').clientHeight
         this.$nextTick(() => {
             window.addEventListener('resize', () => {
-            this.windowHeight = window.innerHeight
-            this.windowWidth = window.innerWidth
-            this.msgHeight = document.getElementById('rightMenu').clientHeight
-            this.menuHeight = document.getElementById('loginMsg').clientHeight
-            this.windowHeight = window.innerHeight
+                this.windowHeight = window.innerHeight
+                this.windowWidth = window.innerWidth
+                this.msgHeight = document.getElementById('rightMenu').clientHeight
+                this.menuHeight = document.getElementById('loginMsg').clientHeight
+                this.windowHeight = window.innerHeight
         })})
         this.matchHeight()
     },

@@ -30,7 +30,8 @@ export default {
         return{
             oldName:"",
             newName:"",
-            calcHeight: 0
+            calcHeight: 0,
+            footerHeight: 0
         }
     },
     created(){
@@ -45,7 +46,22 @@ export default {
         })
     },
     mounted(){
+        this.footerHeight = document.getElementById('footer').clientHeight
+        this.$nextTick(() => {
+            document.getElementById('footer').addEventListener('resize', () => {
+                this.footerHeight = document.getElementById('footer').clientHeight
+            })
+        })
         this.matchHeight()
+        const vueThis = this
+        new ResizeSensor(document.getElementById('footer'), function(){ 
+            vueThis.footerHeight = document.getElementById('footer').clientHeight
+        });
+    },
+    watch:{
+        footerHeight(){
+            this.matchHeight()
+        }
     },
     methods: {
         sendLogStatus(){
@@ -62,9 +78,8 @@ export default {
             })
         },
         matchHeight () {
-            let footerHeight = document.getElementById('footer').clientHeight
             let windowHeight = window.innerHeight
-            this.calcHeight = windowHeight - footerHeight
+            this.calcHeight = windowHeight - this.footerHeight
             this.calcHeight = this.calcHeight + "px"
         }
     }

@@ -29,6 +29,7 @@
           <v-alert
         :value="true"
         type="warning"
+        class="text-xs-left"
       >
           {{this.$cookies.get('username')}} is already logged in.
           </v-alert>

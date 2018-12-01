@@ -7,8 +7,8 @@ while($row = mysqli_fetch_array($statCheck)){
         if($row['lastCheckin'] < $d2){
             $oldVal=$row['user'];
             $newVal="";
+            $room="1";
             include('logMsg.php');
         }
 }
-
 ?>

@@ -6,7 +6,9 @@ if(isset($_GET['oldvalue'])){
     $oldVal=$_GET['oldvalue'];
     $newVal=$_GET['newvalue'];
 }
-$room=$_GET['room'];
+if(isset($_GET['room'])){
+    $room=$_GET['room'];
+}
 
 $time = date("y/m/d");
 $msg = "";

@@ -42,7 +42,6 @@ export default {
         (newValue, oldValue)=>{
             this.oldName=oldValue;
             this.newName=newValue;
-            this.sendLogStatus();
         })
     },
     mounted(){
@@ -64,19 +63,6 @@ export default {
         }
     },
     methods: {
-        sendLogStatus(){
-            axios.get(process.env.VUE_APP_GFAPI + '/logMsg.php',
-            {
-                params:{
-                    room: this.$store.state.room,
-                    newvalue: this.newName,
-                    oldvalue: this.oldName
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            })
-        },
         matchHeight () {
             let windowHeight = window.innerHeight
             this.calcHeight = windowHeight - this.footerHeight

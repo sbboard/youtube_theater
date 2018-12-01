@@ -22,8 +22,12 @@ if($returnMsg==""){
 
         $sqlquery="INSERT INTO $memberTable (user, password, id) VALUES ('$username', '$password', '$indexNo')";
         mysqli_query($con,$sqlquery) or die("Query to insert new record to firsttable failed with this error: ".mysql_error()); 
+        $newVal = $username;
+        $room="1";
+        include("logMsg.php");
         $returnMsg="success";
 } 
+
 echo $returnMsg;
 mysqli_close($con);
 ?>

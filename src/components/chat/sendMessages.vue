@@ -1,7 +1,7 @@
 <template>
 <v-layout class="mx-4" row wrap>
         <v-flex xs12>
-    <form onsubmit="return false;" @submit="sendMsg">
+    <form @submit="sendMsg">
         <v-layout row wrap>
         <v-flex xs10>
             <v-text-field
@@ -10,6 +10,7 @@
         </v-flex>
         <v-flex xs2 class="text-xs-center">
             <v-btn 
+            type="submit" 
              :disabled="msg.length<1">Send</v-btn>
         </v-flex>
         </v-layout>

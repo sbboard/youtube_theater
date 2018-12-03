@@ -1,6 +1,6 @@
 <template>
     <div class="mx-4">
-        <h3>Online:</h3>
+        <h3>{{onlineList.online.length}} user<template v-if="onlineList.online.length>1">s</template> online:</h3>
         <table>
             <tr v-for="(value, key) in onlineList.online" :key=key>
                 <td>{{onlineList.online[key].username}}</td>

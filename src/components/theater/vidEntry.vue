@@ -1,10 +1,16 @@
 <template>
     <div class="mx-4">
         <template v-if="this.$store.state.vidID != this.$store.state.placeholder">
+        <v-layout row>
+            <v-flex xs8>
             {{this.$store.state.currentVid}} 
-            <span v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</span>
-            <span v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</span>
+            </v-flex>
+            <v-flex xs4 class="text-xs-right">
+            <v-btn v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</v-btn>
+            <v-btn v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</v-btn>
             {{this.$store.state.totalDownvotes}} / {{Math.ceil(this.$store.state.totalUsers/2)}}
+            </v-flex>
+        </v-layout>
         </template>
         <v-layout row wrap v-if="this.$store.state.username!=''">
             <v-flex xs12>

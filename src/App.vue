@@ -108,11 +108,11 @@ export default {
           "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
         }
         axios.post(process.env.VUE_APP_GFAPI + '/postMsg.php',params,headers)
-        this.currentMenu = "login"
         .catch(error => {
           console.log(error);
         })
       }
+      this.currentMenu = "login"
     },
     logout(){
         this.$cookies.remove('username')

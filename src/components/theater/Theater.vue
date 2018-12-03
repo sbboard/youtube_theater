@@ -81,6 +81,7 @@ export default {
                         this.nextVidId = response.data.nextVid
                     }
                     this.initTime = response.data.currentTime
+                    console.log(this.initTime)
                 }
             })
             .catch(error => {
@@ -88,6 +89,7 @@ export default {
             })
         },
         ended(){
+            console.log("dig")
             axios.get(process.env.VUE_APP_GFAPI + '/nextVid.php',
             {
                 params:{
@@ -111,7 +113,6 @@ export default {
                 else{
                     this.$store.state.voted = false
                     this.videoId = this.placeHolderVidID
-                    this.player.seekTo(0, true)
                     this.onDefault = true
                 }
                 //define next video
@@ -124,6 +125,7 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+            this.player.seekTo(0, true)
         },
         playing(){
             this.$store.state.vidID = this.videoId

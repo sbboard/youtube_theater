@@ -8,7 +8,7 @@
     </template>
   
     <!--ELSE-->
-    <template v-else>
+    <template v-if="this.$store.state.username == ''">
       <v-layout row class="mt-4">
         <v-flex xs4></v-flex>
       <!-- display log in/register options -->
@@ -39,7 +39,8 @@
       </v-card>
 
       <!-- display log in/register options -->
-      <template v-else-if="currentMenu == 'login'">
+      
+      <template v-if="currentMenu == 'login'">
         <v-card>
         <v-container
           fluid
@@ -51,7 +52,8 @@
       </template>
       
       <!-- login page -->
-      <template v-else-if="currentMenu == 'register'">
+      
+      <template v-if="currentMenu == 'register'">
         <v-card>
         <v-container
           fluid

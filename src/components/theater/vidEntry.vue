@@ -42,7 +42,7 @@
         <v-alert :value="true" type="warning" v-if="$v.$error && vidEntered.length > 0">
             Must be a youtube video
         </v-alert>
-        Current Vid Limit: {{timeLimit/60}} minutes. {{error}}<br/>
+        Current Time Limit: {{timeLimit/60}} minutes. {{error}}<br/>
         Video Queue: {{this.$store.state.queueSize}}/{{queueMax}} <span v-if="this.$store.state.queueSize == queueMax">(full)</span>
     </div>
 </template>

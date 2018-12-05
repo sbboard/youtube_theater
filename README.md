@@ -6,8 +6,8 @@
 - :ballot_box_with_check: Properly use Git for your source version control with an established record of at least 4 days of commits each week from October 15th through December 6th.
 - :ballot_box_with_check: Allow communication between components using props, custom events, or local store.
 - :ballot_box_with_check: Present a form for user input that provides useful form validation and feedback.
-- Create a custom directive and use it on at least one of your components.
-- Use a mix of animations and transitions to enhance some aspects of your project.
+- :ballot_box_with_check: Create a custom directive and use it on at least one of your components.
+- :ballot_box_with_check: Use a mix of animations and transitions to enhance some aspects of your project.
 - :ballot_box_with_check: Connect to a server using HTTP and display retrieved data (use vue-resource or Axios).
 - :ballot_box_with_check: Provide at least 3 different routes with navigation between them using vue-router.
 - :ballot_box_with_check: Manage your application's state using vuex.

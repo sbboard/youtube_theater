@@ -6,7 +6,9 @@
     </v-flex>
     <v-flex xs4 class="largeFlex">
         <rightMenu id="rightMenu"/>
+        <transition name="component-fade" mode="out-in">
         <router-view></router-view>
+        </transition>
     </v-flex>
 </v-layout>
 </template>
@@ -96,4 +98,9 @@ export default {
   position: absolute
   bottom: 0
   width: 100%
+
+.component-fade-enter-active, .component-fade-leave-active 
+  transition: opacity .3s ease
+.component-fade-enter, .component-fade-leave-to
+  opacity: 0
 </style>

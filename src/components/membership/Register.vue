@@ -4,8 +4,8 @@
             <form @submit="submitRegister()">
                 <v-text-field 
                 label="Username"
-                v-model.lazy="username" 
-                @blur="$v.username.$touch"
+                :value="message"
+                @change="v => message = v"
                 id="usernameReg"/>
                 <v-alert
                 :value="!$v.username.checkSame"
@@ -85,7 +85,19 @@ export default {
                 sameAs: sameAs('password')
             }
     },
+    computed:{
+        message : {
+        get() {
+            return this.username
+        }, set(v) {
+            this.username=v
+        }
+        }
+    },
     methods:{
+        changeUsername(val){
+            console.log(val)
+        },
         submitRegister: function(){
             if(this.username=="" || this.password=="" || this.passwordCheck==""){
                 this.errorCheck="Please complete form"

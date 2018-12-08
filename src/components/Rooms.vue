@@ -39,7 +39,7 @@ export default {
     created(){
         this.$store.watch(
         (state)=>{
-            return this.$store.state.username
+            return this.$store.getters.getUsername
         },
         (newValue, oldValue)=>{
             this.oldName=oldValue;

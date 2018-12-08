@@ -57,7 +57,7 @@ export default {
         }
     },
     beforeCreate() {
-      if (this.$store.state.username != "") {
+      if (this.$store.getters.getUsername != "") {
         this.$router.replace('/')
       }
     },
@@ -95,9 +95,6 @@ export default {
         }
     },
     methods:{
-        changeUsername(val){
-            console.log(val)
-        },
         submitRegister: function(){
             if(this.username=="" || this.password=="" || this.passwordCheck==""){
                 this.errorCheck="Please complete form"
@@ -118,10 +115,9 @@ export default {
                 }
                 axios.post(process.env.VUE_APP_GFAPI + '/register.php',params,headers)
                 .then(response => {
-                    console.log(response.data);
                     if(response.data=="success"){
                         this.success=true;
-                        this.$store.state.username=this.username
+                        this.$store.commit('setUsername',this.username)
                         this.$router.push('/');
                     }
                     else{

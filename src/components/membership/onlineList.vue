@@ -26,7 +26,7 @@ export default {
             setInterval(function(){
             axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',{
                 params: {
-                    room: this.$store.state.room
+                    room: this.$store.getters.getRoom
                 }   
             })
             .then(response => {

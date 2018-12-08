@@ -1,14 +1,14 @@
 <template>
 <v-app dark id="app">
     <!-- logo -->
-    <div class="text-xs-center mt-2" id="logoGuy" v-if="this.$store.state.username == ''">YouTube Theater</div>
+    <div class="text-xs-center mt-2" id="logoGuy" v-if="this.$store.getters.getUsername == ''">YouTube Theater</div>
     <!-- display room if logged in -->
-    <template v-if="this.$store.state.username != ''">
+    <template v-if="this.$store.getters.getUsername != ''">
       <Room id="room"/>
     </template>
   
     <!--ELSE-->
-    <template v-if="this.$store.state.username == ''">
+    <template v-if="this.$store.getters.getUsername == ''">
       <v-layout row class="mt-4">
         <v-flex xs4></v-flex>
       <!-- display log in/register options -->
@@ -102,7 +102,7 @@ export default {
       if(this.$cookies.isKey('username')){
         const params = new URLSearchParams();
         params.append('username', "");
-        params.append('room', this.$store.state.room);
+        params.append('room', this.$store.getters.getRoom);
         params.append('msg', this.$cookies.get('username')+" has entered the room");
         var headers = {
           "Access-Control-Allow-Origin" : "*",
@@ -123,7 +123,7 @@ export default {
     checkOnline(){
         axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',{
         params: {
-            room: this.$store.state.room
+            room: this.$store.getters.getRoom
         }})
         .then(response => {
           var badBoy = false
@@ -137,7 +137,7 @@ export default {
             this.alreadyLogged = true
           }
           else{
-            this.$store.state.username = this.$cookies.get('username')
+            this.$store.commit('setUsername',this.$cookies.get('username'))
             this.logged()
           }
         })
@@ -148,7 +148,7 @@ export default {
       autologout(){
             setInterval(function(){
               
-            if(this.$store.state.username == ""){
+            if(this.$store.getters.getUsername == ""){
             axios.get(process.env.VUE_APP_GFAPI + '/autologout.php')
             .catch(error => {
                 console.log(error);

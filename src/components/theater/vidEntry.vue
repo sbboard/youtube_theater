@@ -1,21 +1,21 @@
 <template>
     <div class="mx-4">
-        <template v-if="this.$store.state.vidID != this.$store.state.placeholder">
+        <template v-if="this.$store.getters.getVidID != this.$store.getters.getPlaceholder">
         <v-layout row>
             <v-flex xs8>
-            {{this.$store.state.currentVid}} 
+            {{this.$store.getters.getCurrentVid}} 
             </v-flex>
             <v-flex xs4 class="text-xs-right">
-            <v-btn v-if="this.$store.state.voted == false" @click="vote('downvote')">VOTE TO SKIP</v-btn>
-            <v-btn v-if="this.$store.state.voted == true" @click="vote('fix')">VOTED TO SKIP</v-btn>
-            {{this.$store.state.totalDownvotes}} / {{Math.ceil(this.$store.state.totalUsers/2)}}
+            <v-btn v-if="this.$store.getters.getVoted == false" @click="vote('downvote')">VOTE TO SKIP</v-btn>
+            <v-btn v-if="this.$store.getters.getVoted == true" @click="vote('fix')">VOTED TO SKIP</v-btn>
+            {{this.$store.getters.getTotalDownvotes}} / {{Math.ceil(this.$store.getters.getTotalUsers/2)}}
             </v-flex>
         </v-layout>
         </template>
-        <v-layout row wrap v-if="this.$store.state.username!=''">
+        <v-layout row wrap v-if="this.$store.getters.getUsername!=''">
             <v-flex xs12>
                 <v-layout row wrap>
-                    <template v-if="this.$store.state.queueSize < queueMax">
+                    <template v-if="this.$store.getters.getQueueSize < queueMax">
                         <v-flex xs10>
                             <v-text-field type="text" 
                             label="Submit a YouTube Video"
@@ -43,7 +43,7 @@
             Must be a youtube video
         </v-alert>
         Current Time Limit: {{timeLimit/60}} minutes. {{error}}<br/>
-        Video Queue: {{this.$store.state.queueSize}}/{{queueMax}} <span v-if="this.$store.state.queueSize == queueMax">(full)</span>
+        Video Queue: {{this.$store.getters.getQueueSize}}/{{queueMax}} <span v-if="this.$store.getters.getQueueSize == queueMax">(full)</span>
     </div>
 </template>
 
@@ -94,8 +94,7 @@ export default {
                 }
             })
             .then(response => {
-                this.$store.state.voted = response.data
-                console.log(this.$store.state.voted)
+                this.$store.commit('setVoted',response.data)
             })
             .catch(error => {
             })
@@ -108,7 +107,7 @@ export default {
             this.vidId = getIdFromURL(this.vidEntered)
             this.vidEntered = ""
             //get info from youtube
-            axios.get(this.$store.state.youtube,
+            axios.get(this.$store.getters.getYouTubeAPI,
             {
                 params:{
                     id: this.vidId,
@@ -168,7 +167,7 @@ export default {
                     vidLength: vidLength,
                     vidName: vidName,
                     vidCreator: vidCreator,
-                    username: this.$store.state.username
+                    username: this.$store.getters.getUsername
                 }
             })
             .then(response => {
@@ -188,11 +187,11 @@ export default {
             axios.get(process.env.VUE_APP_GFAPI + '/getQueueSize.php',
             {
                 params:{
-                    room: this.$store.state.room
+                    room: this.$store.getters.getRoom
                 }
             })
             .then(response =>{
-                this.$store.state.queueSize = response.data
+                this.$store.commit('setQueueSize',response.data)
             })
             .catch(error => {
                 console.log(error);

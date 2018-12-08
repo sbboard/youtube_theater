@@ -33,8 +33,8 @@ export default {
     methods: {
         sendMsg: function(){
             const params = new URLSearchParams();
-            params.append('username', this.$store.state.username);
-            params.append('room', this.$store.state.room);
+            params.append('username', this.$store.getters.getUsername);
+            params.append('room', this.$store.getters.getRoom);
             params.append('msg', this.msg);
             var headers = {
                 "Access-Control-Allow-Origin" : "*",

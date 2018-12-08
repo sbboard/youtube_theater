@@ -1,12 +1,10 @@
 <template>
     <div id="menuBoy" class="text-md-center">
-        Hello {{this.$store.state.username}}!
+        Hello {{this.$store.getters.getUsername}}!
         <v-btn to="/">Chat</v-btn>
         <v-btn to="/onlineNow">Online Now</v-btn>
-        <template v-if="this.$store.state.username!=''">
-            <v-btn d-inline-block @click.prevent="submitLogout()">Logout</v-btn>
-        </template>
-        <checkin v-if="this.$store.state.username!=''"/>
+        <v-btn d-inline-block @click.prevent="submitLogout()">Logout</v-btn>
+        <checkin/>
     </div>
 </template>
 
@@ -23,7 +21,7 @@ export default {
     methods: {
         submitLogout(){
             this.$cookies.remove('username')
-            this.$store.state.username=""
+            this.$store.commit('setUsername','')
             this.loginPass=""
             this.loginName=""
         }

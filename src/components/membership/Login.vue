@@ -46,7 +46,7 @@ export default {
     checkOnline(){
         axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',{
         params: {
-            room: this.$store.state.room
+            room: this.$store.getters.getRoom
         }})
         .then(response => {
           var badBoy = false
@@ -78,8 +78,8 @@ export default {
             axios.post(process.env.VUE_APP_GFAPI + '/login.php',params,headers)
             .then(response => {
                 if(response.data==""){
-                    this.$store.state.username=this.loginName
-                    this.$cookies.set('username',this.$store.state.username);
+                    this.$store.commit('setUsername',this.loginName)
+                    this.$cookies.set('username',this.loginName);
                     if(this.$router.currentRoute.name == "register"){
                         this.$router.push('/');
                     }

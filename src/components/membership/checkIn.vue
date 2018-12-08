@@ -15,19 +15,19 @@ export default {
                 axios.get(process.env.VUE_APP_GFAPI + '/checkin.php',
                 {
                     params:{
-                        username: this.$store.state.username,
-                        currentVidTime: this.$store.state.currentTime,
-                        currentVid: this.$store.state.vidID,
-                        placeholder: this.$store.state.placeholder
+                        username: this.$store.getters.getUsername,
+                        currentVidTime: this.$store.getters.getCurrentTime,
+                        currentVid: this.$store.getters.getVidID,
+                        placeholder: this.$store.getters.getPlaceholder
                     }
                 })
                 .then(response => {
-                    if(this.$store.state.currentVid != "XqAX-xIFomw"){
-                        this.$store.state.killed = JSON.parse(response.data.killed)
-                        this.$store.state.totalDownvotes = response.data.downvotes
+                    if(this.$store.getters.getCurrentVid != "XqAX-xIFomw"){
+                        this.$store.commit('setKill',JSON.parse(response.data.killed))
+                        this.$store.commit('setDownvotes',response.data.downvotes)
                     }
                     else{
-                        this.$store.state.killed = false
+                        this.$store.commit('setKill',false)
                     }
                 })
                 .catch(error => {
@@ -37,11 +37,11 @@ export default {
                 axios.get(process.env.VUE_APP_GFAPI + '/onlineCheck.php',
                 {
                     params:{
-                        room: this.$store.state.room
+                        room: this.$store.getters.getRoom
                     }
                 })
                 .then(response => {
-                    this.$store.state.totalUsers = response.data.online.length
+                    this.$store.commit('setTotalUsers',response.data.online.length)
                 })
                 .catch(error => {
                     console.log(error);

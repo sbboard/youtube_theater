@@ -2,10 +2,7 @@
     <div>
         <getMessages :style="{height:calcHeight}" id="chatRoom"/>
         <div id="loginMsg">
-            <sendMessages v-if="this.$store.state.username!=''"/>
-            <div v-else>
-            Login to Participate in Chat
-            </div>
+            <sendMessages/>
         </div>
     </div>
 </template>

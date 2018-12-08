@@ -16,7 +16,7 @@ export default {
             videoId: "",
             initTime: "",
             firstPunch: 0,
-            placeHolderVidID: this.$store.state.placeholder,
+            placeHolderVidID: this.$store.getters.getPlaceholder,
             nextVidId: "",
             onDefault: false,
             playerVars: {
@@ -41,9 +41,8 @@ export default {
             }
         },
         killed(){
-            if(this.$store.state.killed==true){
-                console.log("KILLED")
-                this.$store.state.voted = false
+            if(this.$store.getters.getKilled==true){
+                this.$store.commit('setVoted',false)
                 this.jumpStart()
             }
         }
@@ -65,7 +64,7 @@ export default {
             axios.get(process.env.VUE_APP_GFAPI + '/getCurrentVid.php',
             {
                 params:{
-                    room: this.$store.state.room
+                    room: this.$store.getters.getRoom
                 }
             })
             .then(response => {
@@ -75,7 +74,7 @@ export default {
                 }
                 else{
                     this.videoId = response.data.currentVid
-                    this.$store.state.currentVid = response.data.currentName
+                    this.$store.commit('setCurrentVid',response.data.currentName)
                     this.onDefault = false
                     if(response.data.nextVid){
                         this.nextVidId = response.data.nextVid
@@ -111,7 +110,7 @@ export default {
                     }
                 }
                 else{
-                    this.$store.state.voted = false
+                    this.$store.commit('setVoted',false)
                     this.videoId = this.placeHolderVidID
                     this.onDefault = true
                 }
@@ -128,7 +127,7 @@ export default {
             this.player.seekTo(0, true)
         },
         playing(){
-            this.$store.state.vidID = this.videoId
+            this.$store.commit('setVidID',this.videoId)
             if(this.firstPunch < 1){
                 this.player.seekTo(this.initTime, true)
                 this.firstPunch++
@@ -144,7 +143,7 @@ export default {
             return this.$refs.youtube.player
         },
         killed() {
-            return this.$store.state.killed
+            return this.$store.getters.getKilled
         }
     }
 }

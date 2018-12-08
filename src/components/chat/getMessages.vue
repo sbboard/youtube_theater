@@ -34,7 +34,7 @@ export default {
             axios.get(process.env.VUE_APP_GFAPI + '/text.php',
             {
                 params:{
-                    room: this.$store.state.room
+                    room: this.$store.getters.getRoom
                 }
             })
             .then(response => {

@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 require_once('includes/commonvars.php');
 
 $endedVid = $_GET['endedVid'];

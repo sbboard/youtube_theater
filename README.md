@@ -1,6 +1,6 @@
 # youtube_theater
 ## Effectively use conditional logic and JavaScript array methods to render large lists.
-Exemplified in: getMessages.vue
+Exemplified in: [getMessages.vue]
 ## Encapsulate your code as VueJS single-file components.
 Exemplified in: 
 ## Work with the Vue-CLI to create and manage your project within a real development toolset.

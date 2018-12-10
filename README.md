@@ -25,3 +25,4 @@ npm run lint
 - bright error flash every time a new username is entered on register
 - better style things for resize
 - Default video skips to 3 minutes in after video queue is done
+- Roughly 4 second lag between HOST and local when logging in and a video is already playing

@@ -2,13 +2,11 @@
     <div style="background-color:#212121" class="mx-2 pb-2">
         <p class="bladerunner">All those moments will be lost in time, like tears in rain.</p>
         <div v-if="firstTime < 1" class="text-xs-center w-100">Loading...</div>
-        <table>
-            <tr v-bottom-line v-for="(value, key) in chatLog.chatlog" :key=key>
-                <td class="nameField text-xs-center">{{chatLog.chatlog[key].username}}</td>
-                <td class="msgField" :class="{compMsg:!chatLog.chatlog[key].username}" v-html="chatLog.chatlog[key].message"></td>
-                <td class="datefield text-xs-center">{{chatLog.chatlog[key].time}}</td>
-            </tr>
-        </table>
+        <v-layout row wrap v-for="(value, key) in chatLog.chatlog" :key=key v-bottom-line>
+                <v-flex xs2 class="nameField text-xs-center">{{chatLog.chatlog[key].username}}</v-flex>
+                <v-flex xs8 style="word-wrap:break-word" class="msgField" :class="{compMsg:!chatLog.chatlog[key].username}" v-html="chatLog.chatlog[key].message"></v-flex>
+                <v-flex xs2 class="datefield text-xs-center">{{chatLog.chatlog[key].time}}</v-flex>
+        </v-layout>
     </div>
 </template>
 
@@ -59,31 +57,29 @@ div
         text-align: center
         color: white
         padding-top: 1em
-    table
-        width: 100%
-        border-collapse: collapse
-        .nameField
-            font-weight: 800
-        .msgField
-        .datefield
-            text-align: right
-tr:nth-of-type(1)
+    .nameField
+        font-weight: 800
+    .msgField
+        display: inline-block
+    .datefield
+        text-align: right
+.layout:nth-of-type(1)
     opacity: .10
-tr:nth-of-type(2)
+.layout:nth-of-type(2)
     opacity: .20
-tr:nth-of-type(3)
+.layout:nth-of-type(3)
     opacity: .30
-tr:nth-of-type(4)
+.layout:nth-of-type(4)
     opacity: .40
-tr:nth-of-type(5)
+.layout:nth-of-type(5)
     opacity: .50
-tr:nth-of-type(6)
+.layout:nth-of-type(6)
     opacity: .60
-tr:nth-of-type(7)
+.layout:nth-of-type(7)
     opacity: .70
-tr:nth-of-type(8)
+.layout:nth-of-type(8)
     opacity: .80
-tr:nth-of-type(9)
+.layout:nth-of-type(9)
     opacity: .90
 
 .compMsg

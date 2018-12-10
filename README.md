@@ -26,3 +26,5 @@ npm run lint
 - better style things for resize
 - Default video skips to 3 minutes in after video queue is done
 - Roughly 4 second lag between HOST and local when logging in and a video is already playing
+- after register, logout redirects to register screen but should be login
+- scroll bar doesn't snap to the bottom (at least when posting pls)

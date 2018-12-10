@@ -1,3 +1,3 @@
 module.exports = {
-    //baseUrl: "/youtube_theater"
+    baseUrl: "/youtube_theater"
   };
